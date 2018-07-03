@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf test</title>
+    <script src="/js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app" style="text-align: center; margin: 0 auto; width: 1000px;">
+        <p v-for="item in items">
+            {{item}}}
+        </p>
+    </div>
+<script>
+    var items = [];
+    new Vue({
+        el: "#app",
+        data: {
+            items:items
+        }
+    });
+</script>
+</body>
+</html>

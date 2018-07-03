@@ -1,0 +1,78 @@
+###################  system-web项目配置  ###################
+sw:
+  multi-datasource-switch: false          # 多数据源是否开启开关
+  cache-type: ehcache   # 默认缓存类型
+###################  数据源配置  ###################
+db:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/system_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    filters: log4j,wall,mergeStat
+  ds2:
+    url: jdbc:mysql://127.0.0.1:3306/boot_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    filters: log4j,wall,mergeStat
+
+###################  mybatis-plus配置  ###################
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  typeAliasesPackage: com.sw.base.entity
+  global-config:
+    id-type: 3  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false  #驼峰下划线转换
+    refresh-mapper: true #刷新mapper 调试神器
+  configuration:
+    map-underscore-to-camel-case: true #驼峰转下划线
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+###################  rabbitmq 配置  ###################
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+    encoding: UTF-8
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    # 连接超时时间（毫秒）
+    timeout: 10000
+    cacheType: redis
+    pool:
+      # 连接池中的最大空闲连接
+      max-idle: 8
+      # 连接池中的最小空闲连接
+      min-idle: 10
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 100
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+
+
+
+#################### JWT配置  ###################
+jwt:
+  header: Authorization
+  secret: mySecret
+  exp: 604800 #token七天不过期
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
+  ignored:
+    urls:
+        - /test/**
+        - /cache/**
