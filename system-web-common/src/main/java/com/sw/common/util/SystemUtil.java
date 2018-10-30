@@ -12,6 +12,12 @@ import java.net.URISyntaxException;
  */
 public class SystemUtil {
 
+    /**
+     * 获取class文件
+     * @param path
+     * @param classLoader
+     * @return
+     */
     public static File[] getClassFile(String path, ClassLoader classLoader){
         if(path.contains(BaseConstants.POINT)){
             path = path.replace(".", "/");

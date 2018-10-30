@@ -12,6 +12,7 @@
 
     <groupId>com.system.web</groupId>
     <artifactId>system-web-datasource</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
