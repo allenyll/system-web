@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @Author: yu.leilei
  * @Date: 下午 9:47 2018/5/24 0024
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.sw")
 @Component("com.sw")
 @EnableWebMvc
 public class SwApplication {

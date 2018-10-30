@@ -2,6 +2,13 @@
 sw:
   multi-datasource-switch: false          # 多数据源是否开启开关
   cache-type: ehcache   # 默认缓存类型
+#################### https配置  ###################
+server:
+  port: 8080
+  ssl:
+    key-store: classpath:snuyll.pfx
+    key-store-password: qb8c1nIk
+    keyStoreType: PKCS12
 ###################  数据源配置  ###################
 db:
   profiles: dev
@@ -33,11 +40,11 @@ mybatis-plus:
 
 ###################  rabbitmq 配置  ###################
 spring:
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    password: guest
+    #rabbitmq:
+    #host: 127.0.0.1
+    #port: 5672
+    #username: guest
+    #password: guest
   thymeleaf:
     mode: LEGACYHTML5
     cache: false
@@ -76,3 +83,12 @@ jwt:
     urls:
         - /test/**
         - /cache/**
+        - /wx/**
+
+#################### 微信配置  ###################
+auth:
+  wechat:
+    sessionHost: https://api.weixin.qq.com/sns/jscode2session
+    appId: wx21ed6c30d71225f2
+    appSecret: 005131968476c54c7c94a9793df2fde1
+    grantType: authorization_code
