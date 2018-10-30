@@ -1,5 +1,6 @@
 package com.sw.cache.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.sw.cache.service.IRedisService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -9,6 +10,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -54,5 +56,21 @@ public class RedisServiceImpl implements IRedisService{
             return true;
         });
         return result;
+    }
+
+    @Override
+    public <T> boolean setList(String key, List<T> list) {
+        String value = JSON.toJSONString(list);
+        return set(key, value);
+    }
+
+    @Override
+    public <T> List<T> getList(String key, Class<T> clazz) {
+        String json = get(key);
+        if(json != null){
+            List<T> list = JSON.parseArray(json, clazz);
+            return list;
+        }
+        return null;
     }
 }
