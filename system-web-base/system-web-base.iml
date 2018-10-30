@@ -64,6 +64,24 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.0.28" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: com.alibaba:jconsole:1.8.0">
+        <CLASSES>
+          <root url="jar://C:/AllenYll/Java/jdk1.8.0_152/lib/jconsole.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: com.alibaba:tools:1.8.0">
+        <CLASSES>
+          <root url="jar://C:/AllenYll/Java/jdk1.8.0_152/lib/tools.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.3" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
@@ -97,5 +115,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.14.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.22" level="project" />
   </component>
 </module>

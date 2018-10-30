@@ -72,7 +72,7 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         /********************2.需要生成的表，可以是多个，自行配置********************/
         // 需要生成的表
-        strategy.setInclude(new String[] { "sys_menu"});
+        strategy.setInclude(new String[] { "t_snu_customer"});
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         mpg.setStrategy(strategy);
 
