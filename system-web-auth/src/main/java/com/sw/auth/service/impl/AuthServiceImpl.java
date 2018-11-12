@@ -2,9 +2,9 @@ package com.sw.auth.service.impl;
 
 import com.sw.auth.entity.JwtUser;
 import com.sw.auth.service.IAuthService;
+import com.sw.auth.service.ISysUserService;
 import com.sw.auth.util.JwtUtil;
-import com.sw.base.entity.SysUser;
-import com.sw.base.service.ISysUserService;
+import com.sw.common.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;

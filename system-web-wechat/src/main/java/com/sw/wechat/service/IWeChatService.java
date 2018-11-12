@@ -1,6 +1,6 @@
 package com.sw.wechat.service;
 
-import com.sw.base.entity.Customer;
+import com.sw.common.entity.Customer;
 import com.sw.common.util.DataResponse;
 
 /**

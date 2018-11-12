@@ -1,7 +1,7 @@
 package com.sw.base.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.sw.base.entity.Customer;
+import com.sw.common.entity.Customer;
 import com.sw.base.mapper.CustomerMapper;
 import com.sw.base.service.ICustomerService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 /**

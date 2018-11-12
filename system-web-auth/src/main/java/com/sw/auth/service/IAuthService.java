@@ -1,7 +1,7 @@
 package com.sw.auth.service;
 
 
-import com.sw.base.entity.SysUser;
+import com.sw.common.entity.SysUser;
 
 /**
  * 用户操作接口

@@ -1,6 +1,6 @@
-package com.sw.base.service;
+package com.sw.auth.service;
 
-import com.sw.base.entity.SysUser;
+import com.sw.common.entity.SysUser;
 import com.baomidou.mybatisplus.service.IService;
 
 /**

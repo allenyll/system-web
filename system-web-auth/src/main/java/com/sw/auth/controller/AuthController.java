@@ -3,8 +3,7 @@ package com.sw.auth.controller;
 import com.sw.auth.entity.JwtAuthenticationRequest;
 import com.sw.auth.entity.JwtAuthenticationResponse;
 import com.sw.auth.service.IAuthService;
-import com.sw.auth.util.JwtUtil;
-import com.sw.base.entity.SysUser;
+import com.sw.common.entity.SysUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +60,6 @@ public class AuthController {
     @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
     public String login(@RequestParam String username, @RequestParam String password){
         String token = authService.login(username, password);
-        return "index";
+        return token;
     }
 }

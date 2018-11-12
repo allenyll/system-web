@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableTransactionManagement(order = 2)
-@MapperScan(basePackages = {"com.sw.base.mapper"})
+@MapperScan(basePackages = {"com.sw.base.mapper", "com.sw.auth.mapper"})
 public class MybatisPlusConfig {
 
     @Autowired

@@ -3,7 +3,7 @@
 <mapper namespace="com.sw.base.mapper.CustomerMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="com.sw.base.entity.Customer">
+	<resultMap id="BaseResultMap" type="com.sw.common.entity.Customer">
 		<id column="pk_customer_id" property="pkCustomerId" />
 		<result column="customer_name" property="customerName" />
 		<result column="customer_account" property="customerAccount" />

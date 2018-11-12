@@ -1,12 +1,10 @@
-package com.sw.base.entity;
+package com.sw.common.entity;
 
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * <p>

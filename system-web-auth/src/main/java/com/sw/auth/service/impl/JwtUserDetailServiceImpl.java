@@ -1,8 +1,8 @@
 package com.sw.auth.service.impl;
 
 import com.sw.auth.factory.JwtUserFactory;
-import com.sw.base.entity.SysUser;
-import com.sw.base.service.IUserAuthService;
+import com.sw.auth.service.IUserAuthService;
+import com.sw.common.entity.SysUser;
 import com.sw.common.util.SpringContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

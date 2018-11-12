@@ -2,7 +2,7 @@ package com.sw.wechat.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sw.base.entity.Customer;
+import com.sw.common.entity.Customer;
 import com.sw.base.service.ICustomerService;
 import com.sw.cache.service.IRedisService;
 import com.sw.common.constants.WxConstants;

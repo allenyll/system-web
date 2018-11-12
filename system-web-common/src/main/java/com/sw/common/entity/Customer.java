@@ -1,48 +1,44 @@
-package com.sw.base.entity;
+package com.sw.common.entity;
 
 import java.io.Serializable;
 
-import java.util.Date;
 import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
-import java.io.Serializable;
-
 /**
  * <p>
- * 用户表
+ * 会员表
  * </p>
  *
  * @author yu.leilei
- * @since 2018-06-12
+ * @since 2018-10-22
  */
-@TableName("sys_user")
 @Data
-public class SysUser extends Model<SysUser> {
+@TableName("t_snu_customer")
+public class Customer extends Model<Customer> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户主键
+     * 会员ID
      */
 	@TableId(type = IdType.UUID)
-	private String pkUserId;
+	private String pkCustomerId;
     /**
-     * 组织ID
+     * 会员名称
      */
-	private String fkDepotId;
+	private String customerName;
     /**
-     * 名称
+     * 会员账号
      */
-	private String userName;
-    /**
-     * 账号
-     */
-	private String account;
+	private String customerAccount;
+	/**
+	 * 昵称
+	 */
+	private String nickName;
     /**
      * 密码
      */
@@ -51,12 +47,12 @@ public class SysUser extends Model<SysUser> {
      * 密码盐
      */
 	private String salt;
-	/**
-	 * 会员状态
-	 */
+    /**
+     * 状态
+     */
 	private String status;
     /**
-     * 电话
+     * 手机号
      */
 	private String phone;
     /**
@@ -66,64 +62,46 @@ public class SysUser extends Model<SysUser> {
     /**
      * 性别
      */
-	private String sex;
+	private String gender;
     /**
      * 头像
      */
-	private String picId;
+	private String avatarUrl;
     /**
      * 地址
      */
 	private String address;
-    /**
-     * 省份
-     */
+	private String country;
 	private String province;
-    /**
-     * 城市
-     */
 	private String city;
     /**
-     * 区划
+     * 微信openid
      */
-	private String area;
-	/**
-	 * 最后更新密码时间
-	 */
-	private Date lastPasswordResetDate;
-	/**
-	 * 是否删除
-	 */
-	@TableField("IS_DELETE")
+	private String openid;
+    /**
+     * 是否删除
+     */
 	private Integer isDelete;
-
-	/**
-	 * 创建人
-	 */
-	@TableField("ADD_USER")
+    /**
+     * 创建人
+     */
 	private String addUser;
-
-	/**
-	 * 创建时间
-	 */
-	@TableField("ADD_TIME")
+    /**
+     * 创建时间
+     */
 	private String addTime;
-
-	/**
-	 * 更新人
-	 */
-	@TableField("UPDATE_USER")
+    /**
+     * 更新人
+     */
 	private String updateUser;
-
-	/**
-	 * 更新时间
-	 */
-	@TableField("UPDATE_TIME")
+    /**
+     * 更新时间
+     */
 	private String updateTime;
 
 	@Override
 	protected Serializable pkVal() {
-		return this.pkUserId;
+		return this.pkCustomerId;
 	}
 
 }

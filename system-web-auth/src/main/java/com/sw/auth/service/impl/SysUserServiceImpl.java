@@ -1,8 +1,8 @@
-package com.sw.base.service.impl;
+package com.sw.auth.service.impl;
 
-import com.sw.base.entity.SysUser;
-import com.sw.base.mapper.SysUserMapper;
-import com.sw.base.service.ISysUserService;
+import com.sw.auth.mapper.SysUserMapper;
+import com.sw.auth.service.ISysUserService;
+import com.sw.common.entity.SysUser;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

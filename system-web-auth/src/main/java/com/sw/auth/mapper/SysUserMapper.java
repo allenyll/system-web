@@ -1,6 +1,6 @@
-package com.sw.base.mapper;
+package com.sw.auth.mapper;
 
-import com.sw.base.entity.SysUser;
+import com.sw.common.entity.SysUser;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

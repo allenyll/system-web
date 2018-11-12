@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @since 2018-10-22
  */
 @Controller
-@RequestMapping("/tSnuCustomer")
+@RequestMapping("/customer")
 public class CustomerController {
 	
 }

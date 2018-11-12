@@ -1,7 +1,7 @@
 package com.sw.auth.factory;
 
 import com.sw.auth.entity.JwtUser;
-import com.sw.base.entity.SysUser;
+import com.sw.common.entity.SysUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

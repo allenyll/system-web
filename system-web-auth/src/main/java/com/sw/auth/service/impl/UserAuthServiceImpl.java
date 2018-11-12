@@ -1,10 +1,10 @@
-package com.sw.base.service.impl;
+package com.sw.auth.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.sw.base.entity.SysUser;
-import com.sw.base.service.ISysUserService;
+import com.sw.auth.service.ISysUserService;
+import com.sw.auth.service.IUserAuthService;
+import com.sw.common.entity.SysUser;
 import com.sw.common.constants.dict.UserStatus;
-import com.sw.base.service.IUserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

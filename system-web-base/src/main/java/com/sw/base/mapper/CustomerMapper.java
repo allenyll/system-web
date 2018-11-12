@@ -1,6 +1,6 @@
 package com.sw.base.mapper;
 
-import com.sw.base.entity.Customer;
+import com.sw.common.entity.Customer;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.sw.base.service.impl;
 
-import com.sw.base.entity.SysMenu;
+import com.sw.common.entity.SysMenu;
 import com.sw.base.mapper.SysMenuMapper;
 import com.sw.base.service.ISysMenuService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;

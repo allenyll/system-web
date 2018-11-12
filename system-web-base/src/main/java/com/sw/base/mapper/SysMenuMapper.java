@@ -1,6 +1,6 @@
 package com.sw.base.mapper;
 
-import com.sw.base.entity.SysMenu;
+import com.sw.common.entity.SysMenu;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**

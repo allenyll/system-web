@@ -2,7 +2,7 @@ package com.sw.wechat.controller;
 
 import com.sw.auth.entity.JwtAuthenticationRequest;
 import com.sw.auth.entity.JwtAuthenticationResponse;
-import com.sw.base.entity.Customer;
+import com.sw.common.entity.Customer;
 import com.sw.common.util.DataResponse;
 import com.sw.wechat.entity.WxUserInfo;
 import com.sw.wechat.service.IWeChatService;
