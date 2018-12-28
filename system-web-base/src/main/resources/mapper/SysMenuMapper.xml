@@ -8,6 +8,7 @@
 		<result column="parent_menu_id" property="parentMenuId" />
 		<result column="menu_name" property="menuName" />
 		<result column="menu_url" property="menuUrl" />
+		<result column="menu_code" property="menuCode" />
 		<result column="menu_perms" property="menuPerms" />
 		<result column="menu_type" property="menuType" />
 		<result column="menu_icon" property="menuIcon" />
@@ -21,7 +22,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        pk_menu_id, parent_menu_id, menu_name, menu_url, menu_perms, menu_type, menu_icon, sort_num, is_delete, add_user, add_time, update_user, update_time
+        pk_menu_id, parent_menu_id, menu_name, menu_url, menu_code, menu_perms, menu_type, menu_icon, sort_num, is_delete, add_user, add_time, update_user, update_time
     </sql>
 
 </mapper>

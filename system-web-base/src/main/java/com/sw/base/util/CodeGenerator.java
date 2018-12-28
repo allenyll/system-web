@@ -25,7 +25,7 @@ public class CodeGenerator {
         //参数为空，表示工程路径
         File directory = new File("");
         //String path=directory.getCanonicalPath()+"\\src\\main\\java";//工程路径+java文件路径，构成生成地址
-        String path="D:\\JavaProject\\myproject\\sw\\system-web-base\\src\\main\\java";
+        String path="/Users/yuleilei/allenyll/my_prj/system-web/system-web-base/src/main/java";
         gc.setOutputDir(path);
         gc.setFileOverride(true);
         gc.setActiveRecord(true);
@@ -59,9 +59,9 @@ public class CodeGenerator {
 
         dsc.setDriverName("com.mysql.jdbc.Driver");
 //        dsc.setDriverName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dsc.setUrl("jdbc:mysql://localhost/system_web?useUnicode=true&amp;characterEncoding=UTF-8&amp;generateSimpleParameterMetadata=true");
+        dsc.setUrl("jdbc:mysql://132.232.216.185:3306/system_web?useUnicode=true");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("58024myself");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -72,7 +72,7 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         /********************2.需要生成的表，可以是多个，自行配置********************/
         // 需要生成的表
-        strategy.setInclude(new String[] { "t_snu_customer"});
+        strategy.setInclude(new String[] { "sys_log"});
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         mpg.setStrategy(strategy);
 

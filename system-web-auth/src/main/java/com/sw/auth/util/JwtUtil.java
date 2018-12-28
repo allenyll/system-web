@@ -184,8 +184,8 @@ public class JwtUtil {
         final String userName = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
         Boolean result = (userName.equals(user.getUsername())
-                && !isTokenExpired(token)
-                && isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));
+                && !isTokenExpired(token));
+                //&& isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())); // 创建时间没有配置对
         return result;
     }
 }

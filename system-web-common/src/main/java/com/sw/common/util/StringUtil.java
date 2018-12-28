@@ -173,4 +173,12 @@ public class StringUtil {
         return sb.toString();
     }
 
+    /**
+     * 生成32位uuid
+     * @return
+     */
+    public static String getUUID32(){
+        return UUID.randomUUID().toString().replace("-", "");
+    }
+
 }

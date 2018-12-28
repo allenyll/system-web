@@ -1,5 +1,6 @@
 package com.sw.common.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -26,11 +27,13 @@ public class CorsConfig {
     }
 
     @Bean
-    public CorsFilter corsFilter(){
+    public FilterRegistrationBean corsFilter(){
         System.out.println("corsFilter");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig());
-        return new CorsFilter(source);
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        bean.setOrder(0); // 配置CorsFilter优先级
+        return bean;
     }
 
 }

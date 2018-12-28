@@ -3,7 +3,10 @@ package com.sw.common.entity;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
 
 /**
@@ -23,11 +26,14 @@ public class SysMenu extends Model<SysMenu> {
     /**
      * 菜单主键
      */
+    @TableId(type = IdType.UUID)
 	private String pkMenuId;
     /**
      * 菜单名称
      */
 	private String parentMenuId;
+	@TableField(exist = false)
+	private String parentMenuName;
     /**
      * 菜单名称
      */
@@ -44,6 +50,10 @@ public class SysMenu extends Model<SysMenu> {
      * 菜单类型
      */
 	private String menuType;
+	/**
+	 * 菜单编码
+	 */
+	private String menuCode;
     /**
      * 菜单图标
      */

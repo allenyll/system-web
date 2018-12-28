@@ -1,5 +1,6 @@
 package com.sw.auth.controller;
 
+import com.sw.auth.annotation.Log;
 import com.sw.auth.entity.JwtAuthenticationRequest;
 import com.sw.auth.entity.JwtAuthenticationResponse;
 import com.sw.auth.service.IAuthService;
@@ -25,14 +26,15 @@ public class AuthController {
     @Value("${jwt.header}")
     private String tokenHeader;
 
+
     @Autowired
     private IAuthService authService;
 
+    @Log("系统登录")
     @ApiOperation(value = "授权" ,  notes="授权")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken( @RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
         final String token = authService.login(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }

@@ -43,34 +43,58 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
+    @Value("${jwt.weChat}")
+    private String weChat;
+
+    @Value("${jwt.platForm}")
+    private String plaForm;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        // 跨域实现
+        if (request.getMethod().equals("OPTIONS")){
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
+
+        if (request.getHeader("Access-Control-Request-Method") != null && "OPTIONS".equals(request.getMethod())) {
+            // CORS "pre-flight" request
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+            response.addHeader("Access-Control-Allow-Headers", "*");
+            response.addHeader("Access-Control-Max-Age", "1800");//30 min
+        }
+
         String authHeader = request.getHeader(this.tokenHeader);
         if(StringUtil.isNotEmpty(authHeader) && authHeader.startsWith(tokenHead)){
             // token 在"Bearer "之后
-            final String authToken = authHeader.substring(tokenHead.length());
+            final String authToken = authHeader.substring(tokenHead.length(), authHeader.indexOf(","));
+
+            final String loginType = authHeader.substring(authHeader.indexOf(",")+1);
+            logger.info("loginType=" + loginType);
 
             if (null == authHeader || !authHeader.startsWith("Bearer")) {
                 throw new RuntimeException("非法访问用户");
             }
 
-            String jwtMark = redisService.get(WxConstants.WX_JWT_MARK);
+            // String jwtMark = redisService.get(WxConstants.WX_JWT_MARK);
 
             // 如果是微信登录
-            if(WxConstants.WX_JWT.equals(jwtMark)){
+            if(weChat.equals(loginType)){
                 // 包含微信openid
-                String wxToken = redisService.get(authToken);
-                if (StringUtil.isEmpty(wxToken)) {
+                // String wxToken = redisService.get(authToken);
+                if (StringUtil.isEmpty(authToken)) {
                     throw new RuntimeException("用户身份已过期");
                 }
 
                 // 设置当前登录用户
-                AppContext appContext = new AppContext(wxToken.substring(wxToken.indexOf("#") + 1));
+                String openId = authToken.substring(authToken.indexOf("#") + 1);
+                AppContext appContext = new AppContext(openId);
                 /*try () {
                     filterChain.doFilter(request, response);
                 }*/
 
-            }else{
+            }else if(plaForm.equals(loginType)){
                 // 根据token获取用户名
                 String userName = jwtUtil.getUsernameFromToken(authToken);
                 logger.info("JwtAuthenticationTokenFilter[doFilterInternal] checking authentication " + userName);
@@ -81,7 +105,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
                     UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
 
                     // 判断token是否有效
-                    if(jwtUtil.validateToken(authToken, userDetails)){
+                        if(jwtUtil.validateToken(authToken, userDetails)){
                         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         logger.info("authenticated user " + userName + ", setting security context");

@@ -24,7 +24,7 @@ public class DataResponse extends HashMap<String, Object> {
      * 操作成功
      */
     public DataResponse(){
-        put("result", BaseConstants.SUCCESS);
+        put("code", BaseConstants.SUCCESS);
         put("message", "操作成功");
     }
 
@@ -47,8 +47,8 @@ public class DataResponse extends HashMap<String, Object> {
 
     private static DataResponse fail(String fail, String msg) {
         DataResponse dataResponse = new DataResponse();
-        dataResponse.put("RESULT", fail);
-        dataResponse.put("MESSAGE", msg);
+        dataResponse.put("code", fail);
+        dataResponse.put("message", msg);
         return dataResponse;
     }
 
@@ -59,7 +59,7 @@ public class DataResponse extends HashMap<String, Object> {
      */
     public static DataResponse success(String msg){
         DataResponse dataResponse = new DataResponse();
-        dataResponse.put("MESSAGE", msg);
+        dataResponse.put("message", msg);
         return dataResponse;
     }
 

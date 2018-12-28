@@ -6,21 +6,21 @@ sw:
 server:
   port: 8082
   ssl:
-    key-store: classpath:snuyll.pfx
-    key-store-password: qb8c1nIk
-    keyStoreType: PKCS12
+    key-store: classpath:www.allenyll.com.jks
+    key-store-password: 58024myself
+    keyStoreType: JKS
 ###################  数据源配置  ###################
 db:
   profiles: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/system_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3306/system_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
-    password: root
+    password: 58024myself
     filters: log4j,wall,mergeStat
   ds2:
-    url: jdbc:mysql://127.0.0.1:3306/boot_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://132.232.216.185:3306/boot_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
-    password: root
+    password: 58024myself
     filters: log4j,wall,mergeStat
 
 ###################  mybatis-plus配置  ###################
@@ -70,10 +70,12 @@ spring:
 
 #################### JWT配置  ###################
 jwt:
-  header: Authorization
+  header: authorization
   secret: mySecret
   exp: 604800 #token七天不过期
   tokenHead: "Bearer "
+  platForm: "JWT_PLATFORM"
+  weChat: "JWT_WX"
   route:
     authentication:
       path: auth

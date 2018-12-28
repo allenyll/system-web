@@ -33,6 +33,9 @@ public class SysUser extends Model<SysUser> {
      * 组织ID
      */
 	private String fkDepotId;
+
+	@TableField(exist = false)
+	private String depotName;
     /**
      * 名称
      */
@@ -53,6 +56,9 @@ public class SysUser extends Model<SysUser> {
 	 * 会员状态
 	 */
 	private String status;
+
+	@TableField(exist = false)
+	private String realStatus;
     /**
      * 电话
      */
@@ -65,6 +71,9 @@ public class SysUser extends Model<SysUser> {
      * 性别
      */
 	private String sex;
+
+	@TableField(exist = false)
+	private String realSex;
     /**
      * 头像
      */

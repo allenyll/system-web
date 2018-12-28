@@ -14,4 +14,6 @@ public interface BaseConstants {
     String POINT = ".";
 
     String END_CLASS = ".class";
+
+    String MENU_ROOT = "0";
 }
