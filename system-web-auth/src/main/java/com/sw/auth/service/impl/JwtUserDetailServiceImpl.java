@@ -2,7 +2,7 @@ package com.sw.auth.service.impl;
 
 import com.sw.auth.factory.JwtUserFactory;
 import com.sw.auth.service.IUserAuthService;
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 import com.sw.common.util.SpringContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,7 +27,7 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         IUserAuthService userAuthService = SpringContextHolder.getBean(IUserAuthService.class);
-        SysUser sysUser = userAuthService.getSysUser(username);
+        User sysUser = userAuthService.getSysUser(username);
 
         if (sysUser == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));

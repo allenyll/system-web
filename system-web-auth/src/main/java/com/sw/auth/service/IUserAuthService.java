@@ -1,6 +1,6 @@
 package com.sw.auth.service;
 
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 
 /**
  * 用户权限接口
@@ -14,5 +14,5 @@ public interface IUserAuthService {
      * @param userName
      * @return
      */
-    SysUser getSysUser(String userName);
+    User getSysUser(String userName);
 }

@@ -1,0 +1,22 @@
+package ${package}.service.impl.${moduleName};
+
+import org.springframework.stereotype.Service;
+
+import ${packageEntity}.entity.${moduleName}.${className};
+import ${package}.mapper.${moduleName}.${className}Mapper;
+import com.sw.common.service.BaseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Service("${classNameLow}Service")
+public class ${className}ServiceImpl extends BaseService<${className}Mapper,${className}> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(${className}ServiceImpl.class);
+}

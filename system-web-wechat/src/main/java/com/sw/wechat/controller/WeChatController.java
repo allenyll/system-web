@@ -1,13 +1,13 @@
 package com.sw.wechat.controller;
 
-import com.sw.auth.entity.JwtAuthenticationRequest;
 import com.sw.auth.entity.JwtAuthenticationResponse;
-import com.sw.common.entity.Customer;
+import com.sw.common.entity.customer.Customer;
 import com.sw.common.util.DataResponse;
 import com.sw.wechat.entity.WxUserInfo;
 import com.sw.wechat.service.IWeChatService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Api(description = "微信API")
 @RestController
@@ -60,6 +63,15 @@ public class WeChatController {
     @RequestMapping(value = "/updateCustomer", method = RequestMethod.POST)
     public void updateCustomer(@RequestBody Customer customer){
         weChatService.updateCustomer(customer);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getPhoneNumber", method = RequestMethod.POST)
+    public DataResponse getPhoneNumber(@RequestBody Map<String, Object> params){
+        Map<String, Object> result = new HashMap<>();
+        JSONObject json = weChatService.getPhoneNumber(params);
+        result.put("json", json);
+        return DataResponse.success(result);
     }
 
 }

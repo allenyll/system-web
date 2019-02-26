@@ -1,7 +1,7 @@
 package com.sw.auth.service;
 
 
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 
 /**
  * 用户操作接口
@@ -16,7 +16,7 @@ public interface IAuthService {
      * @param userToAdd 用户信息
      * @return 操作结果
      */
-    SysUser register(SysUser userToAdd);
+    User register(User userToAdd);
 
     /**
      * 用户登录

@@ -21,5 +21,12 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>system-web-auth</id>
+            <url>file:/Users/yuleilei/allenyll/my_prj/maven-repository/repository</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>

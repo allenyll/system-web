@@ -4,7 +4,7 @@ import com.sw.auth.annotation.Log;
 import com.sw.auth.entity.JwtAuthenticationRequest;
 import com.sw.auth.entity.JwtAuthenticationResponse;
 import com.sw.auth.service.IAuthService;
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class AuthController {
 
     @ApiOperation(value = "注册用户" ,  notes="注册用户")
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-    public SysUser register(@RequestBody SysUser addedUser) throws AuthenticationException{
+    public User register(@RequestBody User addedUser) throws AuthenticationException{
         return authService.register(addedUser);
     }
 

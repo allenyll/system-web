@@ -2,19 +2,20 @@ package com.sw.wechat.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sw.common.entity.Customer;
-import com.sw.base.service.ICustomerService;
+import com.sw.base.service.customer.ICustomerPointService;
+import com.sw.common.entity.customer.Customer;
+import com.sw.base.service.customer.ICustomerService;
 import com.sw.cache.service.IRedisService;
 import com.sw.common.constants.WxConstants;
 import com.sw.common.constants.dict.UserStatus;
-import com.sw.common.util.AppContext;
-import com.sw.common.util.DataResponse;
-import com.sw.common.util.DateUtil;
+import com.sw.common.entity.customer.CustomerPoint;
+import com.sw.common.util.*;
 import com.sw.wechat.entity.WxCodeResponse;
 import com.sw.wechat.properties.WeChatProperties;
 import com.sw.wechat.service.IWeChatService;
+import com.sw.wechat.util.AESUtil;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.RandomStringUtils;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class WeChatServiceImpl implements IWeChatService {
 
     @Autowired
     IRedisService redisService;
+
+    @Autowired
+    ICustomerPointService customerPointService;
 
     @Override
     public String auth(String code) {
@@ -149,18 +153,48 @@ public class WeChatServiceImpl implements IWeChatService {
     @Override
     public DataResponse queryUserByOpenId(String openid) {
         Map<String, Object> map = new HashMap<>();
-        EntityWrapper<Customer> customerEntityWrapper = new EntityWrapper<>();
         if(openid.equals(AppContext.getCurrentUserWechatOpenId())){
+            EntityWrapper<Customer> customerEntityWrapper = new EntityWrapper<>();
             customerEntityWrapper.eq("OPENID", AppContext.getCurrentUserWechatOpenId());
             customerEntityWrapper.eq("STATUS", UserStatus.OK.getCode());
             customerEntityWrapper.eq("IS_DELETE", 0);
             Customer customer = customerService.selectOne(customerEntityWrapper);
+
             if(customer != null){
                 map.put("customer", customer);
+                EntityWrapper<CustomerPoint> customerPointEntityWrapper = new EntityWrapper<>();
+                customerEntityWrapper.eq("FK_CUSTOMER_ID", customer.getPkCustomerId());
+                CustomerPoint customerPoint = customerPointService.selectOne(customerPointEntityWrapper);
+                map.put("customerPoint", customerPoint);
             }else{
                 return DataResponse.fail("没有查询到用户！");
             }
         }
         return DataResponse.success(map);
+    }
+
+    @Override
+    public JSONObject getPhoneNumber(Map<String, Object> params) {
+        String code = MapUtil.getMapValue(params, "code");
+        String encryptedData = MapUtil.getMapValue(params, "encryptedData");
+        String iv = MapUtil.getMapValue(params, "iv");
+        WxCodeResponse response = getWxCodeSession(code);
+        String str = AESUtil.wxDecrypt(encryptedData, response.getSessionKey(), iv);
+        JSONObject json = JSONObject.fromObject(str);
+        String phoneNumber = json.getString("phoneNumber");
+        if(StringUtil.isNotEmpty(phoneNumber)){
+            if(response.getOpenid().equals(AppContext.getCurrentUserWechatOpenId())){
+                EntityWrapper<Customer> customerEntityWrapper = new EntityWrapper<>();
+                customerEntityWrapper.eq("OPENID", AppContext.getCurrentUserWechatOpenId());
+                customerEntityWrapper.eq("STATUS", UserStatus.OK.getCode());
+                customerEntityWrapper.eq("IS_DELETE", 0);
+                Customer customer = customerService.selectOne(customerEntityWrapper);
+                if(customer != null ){
+                    customer.setPhone(phoneNumber);
+                    customerService.updateById(customer);
+                }
+            }
+        }
+        return json;
     }
 }

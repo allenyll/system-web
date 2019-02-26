@@ -2,9 +2,8 @@ package com.sw.auth.service.impl;
 
 import com.sw.auth.entity.JwtUser;
 import com.sw.auth.service.IAuthService;
-import com.sw.auth.service.ISysUserService;
 import com.sw.auth.util.JwtUtil;
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,19 +35,18 @@ public class AuthServiceImpl implements IAuthService{
     JwtUtil jwtUtil;
 
     @Autowired
-    ISysUserService sysUserService;
+    UserServiceImpl userService;
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
     @Override
-    public SysUser register(SysUser userToAdd) {
-        final String userName = userToAdd.getAccount();
+    public User register(User userToAdd) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         final String rawPassword = userToAdd.getPassword();
         userToAdd.setPassword(passwordEncoder.encode(rawPassword));
         userToAdd.setLastPasswordResetDate(new Date());
-        sysUserService.insert(userToAdd);
+        userService.insert(userToAdd);
         return userToAdd;
     }
 

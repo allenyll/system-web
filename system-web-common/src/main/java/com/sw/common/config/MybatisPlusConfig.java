@@ -1,6 +1,9 @@
 package com.sw.common.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.mybatisplus.entity.GlobalConfiguration;
+import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import com.sw.ds.datasource.DruidProperties;
 import com.sw.ds.enums.DBType;
 import com.sw.ds.multidatasource.DynamicDataSource;
@@ -23,7 +26,7 @@ import java.util.Map;
  */
 @Configuration
 @EnableTransactionManagement(order = 2)
-@MapperScan(basePackages = {"com.sw.base.mapper", "com.sw.auth.mapper"})
+@MapperScan(basePackages = {"com.sw.*.mapper"})
 public class MybatisPlusConfig {
 
     @Autowired
@@ -93,5 +96,14 @@ public class MybatisPlusConfig {
     public DataSourceTransactionManager transactionManager() {
        return new DataSourceTransactionManager(multiDatasource());
     }*/
+
+    /**
+     * mybatis plus 分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor(){
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
+    }
 
 }

@@ -1,10 +1,8 @@
 package com.sw.auth.aspect;
 
 import com.sw.auth.annotation.Log;
-import com.sw.auth.util.JwtUtil;
-import com.sw.auth.service.ISysLogService;
+import com.sw.auth.service.impl.LogServiceImpl;
 import com.sw.cache.service.IRedisService;
-import com.sw.common.entity.SysLog;
 import com.sw.common.util.*;
 import net.sf.json.JSONObject;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -33,10 +31,7 @@ public class LogAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LogAspect.class);
 
     @Autowired
-    private ISysLogService logService;
-
-    @Autowired
-    private JwtUtil jwtUtil;
+    private LogServiceImpl logService;
 
     @Autowired
     private IRedisService redisService;
@@ -67,7 +62,7 @@ public class LogAspect {
 
         Log log = method.getAnnotation(Log.class);
 
-        SysLog sysLog = new SysLog();
+        com.sw.common.entity.system.Log sysLog = new com.sw.common.entity.system.Log();
 
         if(log != null){
             sysLog.setOperation(log.value());

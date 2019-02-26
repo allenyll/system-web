@@ -1,7 +1,7 @@
 package com.sw.auth.factory;
 
 import com.sw.auth.entity.JwtUser;
-import com.sw.common.entity.SysUser;
+import com.sw.common.entity.system.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -23,7 +23,7 @@ public class JwtUserFactory {
      * @param user
      * @return
      */
-    public static JwtUser create(SysUser user) {
+    public static JwtUser create(User user) {
         return new JwtUser(
                 user.getPkUserId(),
                 user.getAccount(),

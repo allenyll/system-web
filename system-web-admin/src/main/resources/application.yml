@@ -5,10 +5,10 @@ sw:
 #################### https配置  ###################
 server:
   port: 8082
-  ssl:
-    key-store: classpath:www.allenyll.com.jks
-    key-store-password: 58024myself
-    keyStoreType: JKS
+  #ssl:
+    #key-store: classpath:www.allenyll.com.jks
+    #key-store-password: 58024myself
+    #keyStoreType: JKS
 ###################  数据源配置  ###################
 db:
   profiles: dev
@@ -25,7 +25,7 @@ db:
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/*.xml
+  mapper-locations: classpath*:/mapper/**/*.xml
   typeAliasesPackage: com.sw.common.entity
   global-config:
     id-type: 3  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
@@ -72,7 +72,7 @@ spring:
 jwt:
   header: authorization
   secret: mySecret
-  exp: 604800 #token七天不过期
+  exp: 64800 #token七天不过期
   tokenHead: "Bearer "
   platForm: "JWT_PLATFORM"
   weChat: "JWT_WX"
@@ -86,11 +86,12 @@ jwt:
         - /test/**
         - /cache/**
         - /wx/**
+        - /system-web/**
 
 #################### 微信配置  ###################
 auth:
   wechat:
     sessionHost: https://api.weixin.qq.com/sns/jscode2session
-    appId: wx21ed6c30d71225f2
-    appSecret: 005131968476c54c7c94a9793df2fde1
+    appId: wx95a6a02397595ace
+    appSecret: 52c970fbbf76dd8a5ea4b942fca5f6b3
     grantType: authorization_code

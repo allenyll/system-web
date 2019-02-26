@@ -1,6 +1,6 @@
 package com.sw.common.util;
 
-import com.sw.common.entity.TreeNode;
+import com.sw.common.entity.system.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

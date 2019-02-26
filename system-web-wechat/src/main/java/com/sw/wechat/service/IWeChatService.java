@@ -1,7 +1,10 @@
 package com.sw.wechat.service;
 
-import com.sw.common.entity.Customer;
+import com.sw.common.entity.customer.Customer;
 import com.sw.common.util.DataResponse;
+import net.sf.json.JSONObject;
+
+import java.util.Map;
 
 /**
 * @Title: IWeChatService
@@ -38,4 +41,10 @@ public interface IWeChatService {
      * @param openid
      */
     DataResponse queryUserByOpenId(String openid);
+
+    /**
+     * 获取用户手机号
+     * @return
+     */
+    JSONObject getPhoneNumber(Map<String, Object> params);
 }

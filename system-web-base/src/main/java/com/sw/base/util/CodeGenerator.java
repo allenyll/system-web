@@ -59,7 +59,7 @@ public class CodeGenerator {
 
         dsc.setDriverName("com.mysql.jdbc.Driver");
 //        dsc.setDriverName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dsc.setUrl("jdbc:mysql://132.232.216.185:3306/system_web?useUnicode=true");
+        dsc.setUrl("jdbc:mysql://localhost:3306/system_web?useUnicode=true");
         dsc.setUsername("root");
         dsc.setPassword("58024myself");
         mpg.setDataSource(dsc);
@@ -72,7 +72,7 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         /********************2.需要生成的表，可以是多个，自行配置********************/
         // 需要生成的表
-        strategy.setInclude(new String[] { "sys_log"});
+        strategy.setInclude(new String[] { "t_snu_customer"});
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         mpg.setStrategy(strategy);
 
@@ -80,12 +80,12 @@ public class CodeGenerator {
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
         //TODO 以下包名还需要今后确定后再改
-        pc.setController("com.sw.base.controller");
-        pc.setMapper("com.sw.base.mapper");
-        pc.setService("com.sw.base.service");
-        pc.setServiceImpl("com.sw.base.service.impl");
+        pc.setController("com.sw.base.controller.system");
+        pc.setMapper("com.sw.base.mapper.system");
+        pc.setService("com.sw.base.service.system");
+        pc.setServiceImpl("com.sw.base.service.impl.system");
         pc.setEntity("com.sw.base.entity");
-        pc.setXml("com.sw.base.mapper");
+        pc.setXml("com.sw.base.mapper.system");
         mpg.setPackageInfo(pc);
 
         // 执行生成

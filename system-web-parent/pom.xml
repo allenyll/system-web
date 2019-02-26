@@ -15,8 +15,8 @@
         <module>../system-web-cache</module>
         <module>../system-web-common</module>
         <module>../system-web-datasource</module>
-        <module>../system-web-mq</module>
-        <module>../system-web-wechat</module>
+        <module>../system-web-generator</module>
+        <!--<module>../system-web-mq</module>-->
     </modules>
 
 
@@ -60,6 +60,7 @@
         <jedis.version>2.9.0</jedis.version>
         <lombok.version>1.16.22</lombok.version>
         <jsoup.version>1.9.2</jsoup.version>
+        <tkmapper.version>1.1.2</tkmapper.version>
     </properties>
 
     <dependencyManagement>
@@ -221,7 +222,21 @@
                 <version>${jsoup.version}</version>
             </dependency>
 
+            <!-- 通用mapper -->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tkmapper.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>system-web-parent</id>
+            <url>file:/Users/yuleilei/allenyll/my_prj/maven-repository/repository</url>
+        </repository>
+    </distributionManagement>
 
 </project>
