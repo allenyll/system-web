@@ -1,7 +1,6 @@
 package com.sw.generator.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.generator.entity.Gen;
 import com.sw.generator.service.IGeneratorService;
 import io.swagger.annotations.Api;

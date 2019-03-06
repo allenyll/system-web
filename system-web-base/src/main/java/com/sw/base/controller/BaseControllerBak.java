@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 import com.sw.cache.service.IRedisService;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.common.util.MapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

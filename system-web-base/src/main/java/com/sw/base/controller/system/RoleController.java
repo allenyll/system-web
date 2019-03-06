@@ -9,7 +9,7 @@ import com.sw.base.service.system.ISysUserRoleService;
 import com.sw.common.entity.system.Role;
 import com.sw.common.entity.system.SysRoleMenu;
 import com.sw.common.entity.system.SysUserRole;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.common.util.StringUtil;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;

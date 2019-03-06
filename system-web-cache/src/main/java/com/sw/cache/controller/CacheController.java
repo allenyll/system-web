@@ -1,9 +1,14 @@
 package com.sw.cache.controller;
 
+import com.sw.cache.CacheUtil;
 import com.sw.cache.service.IRedisService;
+import com.sw.cache.util.DataResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Cache 缓存控制器
@@ -11,26 +16,37 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 下午 11:33 2018/5/28 0028
  */
 @RestController
-@RequestMapping("/cache")
+@RequestMapping("/system-web/cache")
 public class CacheController {
 
     @Autowired
     IRedisService redisService;
 
-    /**
-     *  插入字符串
-     */
-    @RequestMapping("/set")
-    public void setString() {
-        redisService.set("redis_string_test", "springboot redis test");
+    @Autowired
+    CacheUtil cacheUtil;
+
+
+    @ResponseBody
+    @RequestMapping(value = "page", method = RequestMethod.GET)
+    public DataResponse page(@RequestParam Map<String, Object> params){
+        Map<String, Object> result = new HashMap<>();
+        List<Map<String, Object>> list =  redisService.getAllCache();
+        result.put("list", list);
+        return DataResponse.success(result);
     }
 
-    /**
-     * 获取字符串
-     */
-    @RequestMapping("/get")
-    public void getString() {
-        String result = redisService.get("redis_string_test");
-        System.out.println(result);
+    @ResponseBody
+    @RequestMapping(value = "remove/{key}", method = RequestMethod.DELETE)
+    public DataResponse removeRedisByKey(@PathVariable String key){
+        redisService.remove(key);
+        return DataResponse.success();
     }
+
+    @ResponseBody
+    @RequestMapping(value = "removeAll", method = RequestMethod.DELETE)
+    public DataResponse removeAllCache(){
+        redisService.removeAll();
+        return DataResponse.success();
+    }
+
 }

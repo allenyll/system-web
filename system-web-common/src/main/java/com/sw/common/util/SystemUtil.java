@@ -1,6 +1,6 @@
 package com.sw.common.util;
 
-import com.sw.common.constants.BaseConstants;
+import com.sw.cache.constants.BaseConstants;
 
 import java.io.File;
 import java.net.URISyntaxException;

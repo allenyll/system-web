@@ -4,7 +4,7 @@ package com.sw.base.controller.customer;
 import com.sw.base.controller.BaseControllerBak;
 import com.sw.base.service.customer.ICustomerService;
 import com.sw.common.entity.customer.Customer;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.common.util.MapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.base.controller.BaseController;
 import com.sw.base.service.impl.system.DictServiceImpl;
 import com.sw.common.entity.system.Dict;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

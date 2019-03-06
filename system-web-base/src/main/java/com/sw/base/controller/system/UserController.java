@@ -9,7 +9,7 @@ import com.sw.base.service.impl.system.DepotServiceImpl;
 import com.sw.base.service.system.ISysUserRoleService;
 import com.sw.cache.service.IRedisService;
 import com.sw.common.entity.system.*;
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.common.util.StringUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

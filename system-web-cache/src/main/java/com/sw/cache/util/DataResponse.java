@@ -1,6 +1,6 @@
-package com.sw.common.util;
+package com.sw.cache.util;
 
-import com.sw.common.constants.BaseConstants;
+import com.sw.cache.constants.BaseConstants;
 
 import java.util.HashMap;
 import java.util.Map;

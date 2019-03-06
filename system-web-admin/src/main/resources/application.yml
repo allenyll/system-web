@@ -4,7 +4,7 @@ sw:
   cache-type: ehcache   # 默认缓存类型
 #################### https配置  ###################
 server:
-  port: 8082
+  port: 8080
   #ssl:
     #key-store: classpath:www.allenyll.com.jks
     #key-store-password: 58024myself
@@ -38,9 +38,9 @@ mybatis-plus:
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
-###################  rabbitmq 配置  ###################
+###################  spring 配置  ###################
 spring:
-    #rabbitmq:
+  #rabbitmq:
     #host: 127.0.0.1
     #port: 5672
     #username: guest

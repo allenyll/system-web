@@ -1,4 +1,4 @@
-package com.sw.common.constants;
+package com.sw.cache.constants;
 
 /**
  * 基础常量类
