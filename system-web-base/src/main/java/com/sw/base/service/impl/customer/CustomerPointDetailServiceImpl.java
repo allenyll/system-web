@@ -2,8 +2,7 @@ package com.sw.base.service.impl.customer;
 
 import com.sw.common.entity.customer.CustomerPointDetail;
 import com.sw.base.mapper.customer.CustomerPointDetailMapper;
-import com.sw.base.service.customer.ICustomerPointDetailService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.sw.common.service.BaseService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-01-09
  */
 @Service
-public class CustomerPointDetailServiceImpl extends ServiceImpl<CustomerPointDetailMapper, CustomerPointDetail> implements ICustomerPointDetailService {
+public class CustomerPointDetailServiceImpl extends BaseService<CustomerPointDetailMapper, CustomerPointDetail> {
 	
 }

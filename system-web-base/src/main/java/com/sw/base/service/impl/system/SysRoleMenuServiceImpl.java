@@ -1,10 +1,8 @@
 package com.sw.base.service.impl.system;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.sw.base.service.system.ISysRoleMenuService;
 import com.sw.common.entity.system.SysRoleMenu;
 import com.sw.base.mapper.system.SysRoleMenuMapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.sw.common.service.BaseService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2018-11-13
  */
 @Service("roleMenuService")
-public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {
+public class SysRoleMenuServiceImpl extends BaseService<SysRoleMenuMapper, SysRoleMenu> {
 	
 }

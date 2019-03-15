@@ -40,11 +40,13 @@ mybatis-plus:
 
 ###################  spring 配置  ###################
 spring:
-  #rabbitmq:
-    #host: 127.0.0.1
-    #port: 5672
-    #username: guest
-    #password: guest
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    publisher-confirms: true
+    virtual-host: /
   thymeleaf:
     mode: LEGACYHTML5
     cache: false

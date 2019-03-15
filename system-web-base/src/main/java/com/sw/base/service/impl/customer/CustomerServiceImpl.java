@@ -5,11 +5,10 @@ import com.sw.base.mapper.customer.CustomerPointDetailMapper;
 import com.sw.base.mapper.customer.CustomerPointMapper;
 import com.sw.common.entity.customer.Customer;
 import com.sw.base.mapper.customer.CustomerMapper;
-import com.sw.base.service.customer.ICustomerService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.sw.common.constants.dict.UserStatus;
 import com.sw.common.entity.customer.CustomerPoint;
 import com.sw.common.entity.customer.CustomerPointDetail;
+import com.sw.common.service.BaseService;
 import com.sw.common.util.DateUtil;
 import com.sw.common.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ import java.util.Map;
  * @since 2018-10-22
  */
 @Service("customerService")
-public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements ICustomerService {
+public class CustomerServiceImpl extends BaseService<CustomerMapper, Customer> {
 
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -46,7 +45,6 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     @Autowired
     CustomerPointDetailMapper customerPointDetailMapper;
 
-    @Override
     @Transactional(rollbackFor=Exception.class)
     public void loginOrRegisterConsumer(Customer customer) {
         EntityWrapper<Customer> wrapper = new EntityWrapper<>();
@@ -94,7 +92,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
             calendar.add(Calendar.MONTH, 6);
             Date time = calendar.getTime();
             customerPointDetail.setExpiredTime(FORMAT.format(time));
-            customerPointDetail.setIsDeleted(0);
+            customerPointDetail.setIsDelete(0);
             customerPointDetail.setRemark("用户" + customer.getNickName() + "注册赠送5个积分!");
 
             try {
@@ -106,16 +104,6 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             }
         }
-    }
-
-    @Override
-    public int count(Map<String, Object> params) {
-        return customerMapper.count(params);
-    }
-
-    @Override
-    public List<Customer> page(Map<String, Object> params) {
-        return customerMapper.page(params);
     }
 
 }

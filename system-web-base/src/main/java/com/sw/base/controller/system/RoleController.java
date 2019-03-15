@@ -4,8 +4,8 @@ package com.sw.base.controller.system;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.base.service.impl.system.RoleServiceImpl;
 import com.sw.base.controller.BaseController;
-import com.sw.base.service.system.ISysRoleMenuService;
-import com.sw.base.service.system.ISysUserRoleService;
+import com.sw.base.service.impl.system.SysRoleMenuServiceImpl;
+import com.sw.base.service.impl.system.SysUserRoleServiceImpl;
 import com.sw.common.entity.system.Role;
 import com.sw.common.entity.system.SysRoleMenu;
 import com.sw.common.entity.system.SysUserRole;
@@ -40,10 +40,10 @@ public class RoleController  extends BaseController<RoleServiceImpl, Role> {
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
 
     @Autowired
-    ISysRoleMenuService roleMenuService;
+    SysRoleMenuServiceImpl roleMenuService;
 
     @Autowired
-    ISysUserRoleService userRoleService;
+    SysUserRoleServiceImpl userRoleService;
 
     @ResponseBody
     @RequestMapping(value = "getRoleList/{id}", method = RequestMethod.GET)

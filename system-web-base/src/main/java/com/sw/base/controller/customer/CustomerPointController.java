@@ -2,23 +2,26 @@ package com.sw.base.controller.customer;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.sw.base.controller.BaseController;
 import com.sw.base.mapper.customer.CustomerPointDetailMapper;
-import com.sw.base.service.customer.ICustomerPointDetailService;
-import com.sw.base.service.customer.ICustomerPointService;
+import com.sw.base.service.impl.customer.CustomerPointDetailServiceImpl;
+import com.sw.base.service.impl.customer.CustomerPointServiceImpl;
+import com.sw.base.service.impl.customer.CustomerServiceImpl;
+import com.sw.common.entity.Entity;
+import com.sw.common.entity.customer.Customer;
 import com.sw.common.entity.customer.CustomerPoint;
 import com.sw.common.entity.customer.CustomerPointDetail;
 import com.sw.cache.util.DataResponse;
 import com.sw.common.util.MapUtil;
+import com.sw.common.util.StringUtil;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,20 +36,57 @@ import java.util.Map;
  * @since 2019-01-09
  */
 @Controller
-@RequestMapping("/point")
+@RequestMapping("/system-web/customerPoint")
 @Api(value = "用户积分相关接口")
-public class CustomerPointController {
+public class CustomerPointController extends BaseController<CustomerPointServiceImpl, CustomerPoint> {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustomerPointController.class);
 
     @Autowired
-    ICustomerPointService customerPointService;
+    CustomerPointServiceImpl customerPointService;
 
     @Autowired
-    ICustomerPointDetailService customerPointDetailService;
+    CustomerPointDetailServiceImpl customerPointDetailService;
 
     @Autowired
     CustomerPointDetailMapper customerPointDetailMapper;
+
+    @Autowired
+    CustomerServiceImpl customerService;
+
+    @Override
+    @ResponseBody
+    @RequestMapping(value = "page", method = RequestMethod.GET)
+    public DataResponse page(@RequestParam  Map<String, Object> params) {
+        String customerAccount = MapUtil.getMapValue(params, "customerAccount");
+        if(StringUtil.isNotEmpty(customerAccount)){
+            EntityWrapper<Customer> wrapper = new EntityWrapper<>();
+            wrapper.eq("CUSTOMER_ACCOUNT", customerAccount);
+            Customer customer = customerService.selectOne(wrapper);
+            if(customer != null){
+                params.put("eq_fk_customer_id", customer.getPkCustomerId());
+            }else{
+                params.put("eq_fk_customer_id", "undefined");
+            }
+        }
+
+        DataResponse response = super.page(params);
+
+        List<CustomerPoint> list = (List<CustomerPoint>) response.get("list");
+        if(!CollectionUtils.isEmpty(list)){
+            for(CustomerPoint customerPoint:list){
+                Customer customer = customerService.selectById(customerPoint.getFkCustomerId());
+                if(customer != null){
+                    customerPoint.setCustomerName(customer.getCustomerName());
+                    customerPoint.setCustomerAccount(customer.getCustomerAccount());
+                }
+            }
+        }
+
+        response.put("list", list);
+
+        return response;
+    }
 
     /**
      * 获取积分

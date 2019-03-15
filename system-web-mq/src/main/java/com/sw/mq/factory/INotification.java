@@ -1,6 +1,7 @@
 package com.sw.mq.factory;
 
-import com.sw..util.DataResponse;
+
+import com.sw.cache.util.DataResponse;
 
 import java.util.Map;
 

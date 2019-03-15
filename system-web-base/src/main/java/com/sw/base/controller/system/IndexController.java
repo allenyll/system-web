@@ -1,6 +1,5 @@
 package com.sw.base.controller.system;
 
-import com.sw.base.controller.BaseControllerBak;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Date: 上午 11:28 2018/6/12 0012
  */
 @Controller
-public class IndexController extends BaseControllerBak {
+public class IndexController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){

@@ -20,6 +20,11 @@
             <artifactId>system-web-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.system.web</groupId>
+            <artifactId>system-web-cache</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--amqp rabbitmq 依赖必须 必须-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

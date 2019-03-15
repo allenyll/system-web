@@ -2,11 +2,10 @@ package com.sw.common.entity.customer;
 
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.sw.common.entity.Entity;
 import lombok.Data;
 
 /**
@@ -19,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @TableName("t_snu_customer")
-public class Customer extends Model<Customer> {
+public class Customer extends Entity<Customer> {
 
     private static final long serialVersionUID = 1L;
 
@@ -88,32 +87,6 @@ public class Customer extends Model<Customer> {
 	 * 微信openid
 	 */
 	private String openid;
-	/**
-	 * 是否删除
-	 */
-	private Integer isDelete;
-	/**
-	 * 创建人
-	 */
-	private String addUser;
-	/**
-	 * 创建时间
-	 */
-	private String addTime;
-	/**
-	 * 更新人
-	 */
-	private String updateUser;
-	/**
-	 * 更新时间
-	 */
-	private String updateTime;
-
-	@TableField(exist = false)
-	private String statusName;
-
-	@TableField(exist = false)
-	private String genderName;
 
 	@Override
 	protected Serializable pkVal() {

@@ -1,10 +1,8 @@
 package com.sw.base.service.impl.system;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.sw.base.service.system.ISysUserRoleService;
 import com.sw.common.entity.system.SysUserRole;
 import com.sw.base.mapper.system.SysUserRoleMapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.sw.common.service.BaseService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2018-11-13
  */
 @Service("userRoleService")
-public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUserRole> implements ISysUserRoleService {
+public class SysUserRoleServiceImpl extends BaseService<SysUserRoleMapper, SysUserRole> {
 	
 }

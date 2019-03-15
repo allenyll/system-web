@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.sw.common.entity.Entity;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -20,6 +21,7 @@ import java.io.Serializable;
  */
 @TableName("sys_log")
 @Data
+@ToString
 public class Log extends Entity<Log> {
 
     private static final long serialVersionUID = 1L;

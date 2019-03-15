@@ -16,7 +16,7 @@
         <module>../system-web-common</module>
         <module>../system-web-datasource</module>
         <module>../system-web-generator</module>
-        <!--<module>../system-web-mq</module>-->
+        <module>../system-web-mq</module>
     </modules>
 
 

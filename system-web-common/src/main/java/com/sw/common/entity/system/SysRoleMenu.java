@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * <p>
@@ -17,6 +18,7 @@ import lombok.Data;
  * @since 2018-11-13
  */
 @Data
+@ToString
 @TableName("sys_role_menu")
 public class SysRoleMenu extends Model<SysRoleMenu> {
 
@@ -42,12 +44,4 @@ public class SysRoleMenu extends Model<SysRoleMenu> {
 		return this.pkRelationId;
 	}
 
-	@Override
-	public String toString() {
-		return "SysRoleMenu{" +
-			"pkRelationId=" + pkRelationId +
-			", fkRoleId=" + fkRoleId +
-			", fkMenuId=" + fkMenuId +
-			"}";
-	}
 }

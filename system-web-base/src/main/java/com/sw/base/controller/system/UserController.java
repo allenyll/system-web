@@ -6,7 +6,7 @@ import com.sw.auth.service.impl.UserServiceImpl;
 import com.sw.auth.util.JwtUtil;
 import com.sw.base.controller.BaseController;
 import com.sw.base.service.impl.system.DepotServiceImpl;
-import com.sw.base.service.system.ISysUserRoleService;
+import com.sw.base.service.impl.system.SysUserRoleServiceImpl;
 import com.sw.cache.service.IRedisService;
 import com.sw.common.entity.system.*;
 import com.sw.cache.util.DataResponse;
@@ -48,7 +48,7 @@ public class UserController extends BaseController<UserServiceImpl, User> {
     IUserAuthService userAuthService;
 
     @Autowired
-    ISysUserRoleService userRoleService;
+    SysUserRoleServiceImpl userRoleService;
 
     @Autowired
     DepotServiceImpl depotService;

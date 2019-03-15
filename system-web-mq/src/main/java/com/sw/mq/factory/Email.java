@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sw.common.util.DataResponse;
+import com.sw.cache.util.DataResponse;
 import com.sw.mq.constants.EmailConstants;
 import com.sw.mq.util.NotificationUtil;
 import org.slf4j.Logger;
