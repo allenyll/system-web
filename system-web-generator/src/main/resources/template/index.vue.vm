@@ -53,13 +53,7 @@
 </template>
 
 <script>
-  import {
-      page,
-      addObj,
-      getObj,
-      delObj,
-      putObj
-  } from '@/api/${moduleName}/${secondModuleName}/index';
+  import { page, addObj, getObj, delObj, putObj } from '@/api/${moduleName}/${secondModuleName}/index';
   import { mapGetters } from 'vuex';
   export default {
     name: '${secondModuleName}',
@@ -79,12 +73,6 @@
             {
               required: true,
               message: '请输入${column.comments}',
-              trigger: 'blur'
-            },
-            {
-              min: 3,
-              max: 20,
-              message: '长度在 3 到 20 个字符',
               trigger: 'blur'
             }
           ]#if($velocityCount != $entitys.size()), #end
