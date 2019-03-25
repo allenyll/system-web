@@ -16,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -44,6 +45,21 @@ public class BaseController<Service extends BaseService, T extends Entity>{
      * 每页数量
      */
     protected int limit = 10;
+
+    @ResponseBody
+    @RequestMapping(value = "list", method = RequestMethod.POST)
+    public DataResponse list(){
+        Map<String, Object> result = new HashMap<>();
+
+        EntityWrapper<T> wrapper = new EntityWrapper<>();
+        wrapper.eq("IS_DELETE", 0);
+
+        List<T> list = service.selectList(wrapper);
+
+        result.put("list", list);
+
+        return DataResponse.success(result);
+    }
 
     @ResponseBody
     @RequestMapping(value = "page", method = RequestMethod.GET)

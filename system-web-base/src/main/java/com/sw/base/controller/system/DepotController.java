@@ -74,7 +74,17 @@ public class DepotController extends BaseController<DepotServiceImpl, Depot> {
                 setParentDepot(depot);
             }
         }
-        List<DepotTree> trees = getDepotTree(list, BaseConstants.MENU_ROOT);
+
+        Depot depot = new Depot();
+        depot.setPkDepotId("0");
+        depot.setDepotName("顶级节点");
+        depot.setDepotCode("top");
+        depot.setDepotCode("top");
+        depot.setIsDelete(0);
+        depot.setParentDepotId("top");
+        list.add(depot);
+
+        List<DepotTree> trees = getDepotTree(list, "top");
 
         result.put("depotTree", trees);
         LOGGER.info("==================结束调用getDepotTree================");
@@ -86,21 +96,22 @@ public class DepotController extends BaseController<DepotServiceImpl, Depot> {
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public DataResponse get(@PathVariable String id){
         LOGGER.info("==================开始调用 get================");
-        Map<String, Object> result = new HashMap<>();
+        DataResponse dataResponse = super.get(id);
+        Depot depot = (Depot) dataResponse.get("obj");
 
-        EntityWrapper<Depot> wrapper = new EntityWrapper<>();
-        wrapper.eq("IS_DELETE", 0);
-        wrapper.eq("PK_DEPOT_ID", id);
+        if(BaseConstants.MENU_ROOT.equals(id)){
+            depot = new Depot();
+            depot.setPkDepotId(id);
+            depot.setDepotName("顶级节点");
+        }else{
+            setParentDepot(depot);
+        }
 
-        Depot depot = service.selectOne(wrapper);
-
-        setParentDepot(depot);
-
-        result.put("obj", depot);
+        dataResponse.put("obj", depot);
 
         LOGGER.info("==================结束调用 get================");
 
-        return DataResponse.success(result);
+        return dataResponse;
     }
 
     private List<DepotTree> getDepotTree(List<Depot> list, String rootId) {

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="姓名或账户" v-model="listQuery.name"> </el-input>
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="名称" v-model="listQuery.like_name"> </el-input>
       <el-button class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
       <el-button class="filter-item" v-if="${secondModuleName}Manager_btn_add" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
     </div>
@@ -114,12 +114,11 @@
     methods: {
       getList() {
         this.listLoading = true;
-        page(this.listQuery)
-            .then(response => {
+        page(this.listQuery).then(response => {
           this.list = response.data.list;
-        this.total = response.data.total;
-        this.listLoading = false;
-      })
+          this.total = response.data.total;
+          this.listLoading = false;
+        })
       },
       handleFilter() {
         this.getList();
@@ -138,39 +137,36 @@
         this.dialogFormVisible = true;
       },
       handleUpdate(row) {
-        getObj(row.$pk.attrNameLow)
-            .then(response => {
+        getObj(row.$pk.attrNameLow).then(response => {
           this.form = response.data.obj;
-        this.dialogFormVisible = true;
-        this.dialogStatus = 'update';
-      });
+          this.dialogFormVisible = true;
+          this.dialogStatus = 'update';
+        });
       },
       handleDelete(row) {
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
               confirmButtonText: '确定',
               cancelButtonText: '取消',
               type: 'warning'
-            })
+        }).then(() => {
+          delObj(row.$pk.attrNameLow)
             .then(() => {
-              delObj(row.$pk.attrNameLow)
-                .then(() => {
-                    this.$notify({
-                    title: '成功',
-                    message: '删除成功',
-                    type: 'success',
-                    duration: 2000
-                  });
-                  const index = this.list.indexOf(row);
-                  this.list.splice(index, 1);
-                });
+                this.$notify({
+                title: '成功',
+                message: '删除成功',
+                type: 'success',
+                duration: 2000
+              });
+              const index = this.list.indexOf(row);
+              this.list.splice(index, 1);
             });
+        });
       },
       create(formName) {
         const set = this.$refs;
         set[formName].validate(valid => {
           if (valid) {
-            addObj(this.form)
-              .then(() => {
+            addObj(this.form).then(() => {
                 this.dialogFormVisible = false;
                 this.getList();
                 this.$notify({
@@ -179,7 +175,7 @@
                   type: 'success',
                   duration: 2000
                 });
-              })
+            })
           } else {
             return false;
           }
