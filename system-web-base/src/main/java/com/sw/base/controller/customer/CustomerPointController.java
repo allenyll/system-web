@@ -2,12 +2,11 @@ package com.sw.base.controller.customer;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.mapper.customer.CustomerPointDetailMapper;
 import com.sw.base.service.impl.customer.CustomerPointDetailServiceImpl;
 import com.sw.base.service.impl.customer.CustomerPointServiceImpl;
 import com.sw.base.service.impl.customer.CustomerServiceImpl;
-import com.sw.common.entity.Entity;
 import com.sw.common.entity.customer.Customer;
 import com.sw.common.entity.customer.CustomerPoint;
 import com.sw.common.entity.customer.CustomerPointDetail;

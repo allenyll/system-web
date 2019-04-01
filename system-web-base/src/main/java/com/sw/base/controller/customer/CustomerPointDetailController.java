@@ -1,7 +1,7 @@
 package com.sw.base.controller.customer;
 
 
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.customer.CustomerPointDetailServiceImpl;
 import com.sw.common.entity.customer.CustomerPointDetail;
 import org.springframework.web.bind.annotation.RequestMapping;

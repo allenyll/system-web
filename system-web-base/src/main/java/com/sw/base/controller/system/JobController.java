@@ -1,6 +1,6 @@
 package com.sw.base.controller.system;
 
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.system.JobServiceImpl;
 import com.sw.cache.util.DataResponse;
 import com.sw.common.constants.JobConstants;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j

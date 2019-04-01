@@ -1,4 +1,4 @@
-package com.sw.base.controller;
+package com.sw.common.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -141,7 +141,10 @@ public class BaseController<Service extends BaseService, T extends Entity>{
         obj.setIsDelete(1);
         obj.setUpdateTime(DateUtil.getCurrentDateTime());
         obj.setUpdateUser(userId);
-        service.update(obj, delWrapper);
+        boolean flag = service.update(obj, delWrapper);
+        if(!flag){
+            return DataResponse.fail("删除失败");
+        }
 
         return DataResponse.success();
     }

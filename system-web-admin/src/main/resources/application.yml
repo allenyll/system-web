@@ -51,6 +51,7 @@ spring:
     mode: LEGACYHTML5
     cache: false
     encoding: UTF-8
+  #redis
   redis:
     host: localhost
     port: 6379
@@ -67,6 +68,36 @@ spring:
       max-active: 100
       # 连接池最大阻塞等待时间（使用负值表示没有限制）
       max-wait: -1
+  #fdfs配置 spring boot 1.4使用http/ spring boot 2.0使用servlet
+  http:
+    multipart:
+      #单个文件最大尺寸
+      max-file-size: 10mb
+      #一个请求文件的最大尺寸
+      max-request-size: 50mb
+      #设置一个文件上传的临时文件目录
+      location: /Users/yuleilei/allenyll/my_prj/tempPhoto
+
+#################### fdfs配置 ###################
+fdfs:
+  #读取inputsream阻塞时间
+  connect-timeout: 600
+  so-timeout: 1500
+  #tracker地址
+  trackerList: 132.232.216.185:22122
+  #通过nginx 访问地址
+  #fdfs.webServerUrl=http://132.232.216.185:9999/
+  #缩略图配置
+  thumb-image:
+    height: 150
+    width: 150
+  #spring.jmx.enabled=false
+  #通过nginx 访问地址
+  resHost: 132.232.216.185
+  storagePort: 9999
+  #获取连接池最大数量
+  pool:
+    max-total: 200
 
 
 

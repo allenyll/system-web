@@ -1,7 +1,7 @@
 package com.sw.base.controller.goods;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.goods.CategoryServiceImpl;
 import com.sw.cache.constants.BaseConstants;
 import com.sw.cache.util.DataResponse;

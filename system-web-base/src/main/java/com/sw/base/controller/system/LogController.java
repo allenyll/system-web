@@ -2,7 +2,7 @@ package com.sw.base.controller.system;
 
 
 import com.sw.auth.service.impl.LogServiceImpl;
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.common.entity.system.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

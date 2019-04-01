@@ -1,6 +1,6 @@
 package com.sw.base.controller.goods;
 
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.goods.GoodsServiceImpl;
 import com.sw.common.entity.goods.Goods;
 import org.springframework.stereotype.Controller;

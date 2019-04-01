@@ -2,7 +2,7 @@ package com.sw.base.controller.system;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.system.DictServiceImpl;
 import com.sw.common.constants.dict.StatusDict;
 import com.sw.common.entity.system.Dict;

@@ -1,9 +1,8 @@
 package ${package}.controller.${moduleName};
 
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import ${package}.service.impl.${moduleName}.${className}ServiceImpl;
 import ${packageEntity}.entity.${moduleName}.${className};
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

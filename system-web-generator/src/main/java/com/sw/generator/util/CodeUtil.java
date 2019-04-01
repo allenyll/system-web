@@ -182,27 +182,34 @@ public class CodeUtil {
         }
 
         if (template.contains("index.js.vm")) {
-            return frontPath + "api" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
+            //return frontPath + "api" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
+            return frontPath +  File.separator + toLowerCaseFirstOne(className) + File.separator + "index.js";
         }
 
         if (template.contains("index.vue.vm")) {
-            return frontPath + "views" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.vue";
+            //return frontPath + "views" + File.separator + moduleName + File.separator + toLowerCaseFirstOne(className) + File.separator + "index.vue";
+            return frontPath +  File.separator + toLowerCaseFirstOne(className) + File.separator + "index.vue";
         }
 
         if (template.contains("service.java.vm")) {
-            return packagePath + "service" + File.separator + "impl" + File.separator + moduleName + File.separator + className + "ServiceImpl.java";
+            //return packagePath + "service" + File.separator + "impl" + File.separator + moduleName + File.separator + className + "ServiceImpl.java";
+            return frontPath + className + "ServiceImpl.java";
         }
         if (template.contains("mapper.java.vm")) {
-            return packagePath + "mapper" + File.separator + moduleName + File.separator + className + "Mapper.java";
+            //return packagePath + "mapper" + File.separator + moduleName + File.separator + className + "Mapper.java";
+            return frontPath + className +  "Mapper.java";
         }
         if (template.contains("entity.java.vm")) {
-            return packagePath + "entity" + File.separator + moduleName + File.separator + className + ".java";
+            //return packagePath + "entity" + File.separator + moduleName + File.separator + className + ".java";
+            return frontPath + className + ".java";
         }
         if (template.contains("controller.java.vm")) {
-            return packagePath + "controller" + File.separator + moduleName + File.separator + className + "Controller.java";
+            //return packagePath + "controller" + File.separator + moduleName + File.separator + className + "Controller.java";
+            return frontPath + className +  "Controller.java";
         }
         if (template.contains("mapper.xml.vm")) {
-            return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Mapper.xml";
+           // return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Mapper.xml";
+            return frontPath + className + "Mapper.xml";
         }
 
         return null;

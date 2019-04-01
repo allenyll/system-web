@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.auth.service.IUserAuthService;
 import com.sw.auth.service.impl.UserServiceImpl;
 import com.sw.auth.util.JwtUtil;
-import com.sw.base.controller.BaseController;
+import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.system.DepotServiceImpl;
 import com.sw.base.service.impl.system.SysUserRoleServiceImpl;
 import com.sw.cache.service.IRedisService;
