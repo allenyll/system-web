@@ -19,5 +19,5 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/system-web/customerPointDetail")
 public class CustomerPointDetailController extends BaseController<CustomerPointDetailServiceImpl, CustomerPointDetail> {
-	
+
 }

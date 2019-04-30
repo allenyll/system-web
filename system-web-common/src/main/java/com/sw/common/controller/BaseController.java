@@ -33,6 +33,8 @@ public class BaseController<Service extends BaseService, T extends Entity>{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
+    protected static final String DEFAULT_URL = "http://www.allenyll.com:9999/group1/M00/00/00/rBsAA1zFm36AdyJXAAAmZMk0KxA04.jpeg";
+
     @Autowired
     protected IRedisService redisService;
 
@@ -45,6 +47,11 @@ public class BaseController<Service extends BaseService, T extends Entity>{
      * 每页数量
      */
     protected int limit = 10;
+
+    /**
+     * 总页数
+     */
+    protected int totalPage = 0;
 
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.POST)
@@ -199,6 +206,14 @@ public class BaseController<Service extends BaseService, T extends Entity>{
 
     public int getLimit() {
         return limit;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
     }
 
     public void setLimit(int limit) {

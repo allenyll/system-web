@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.enums.IdType;
 import com.sw.common.entity.Entity;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import javax.persistence.*;
 
 
@@ -55,6 +57,15 @@ public class Category extends Entity<Category>  {
 
 	// 是否启用
     private String isUsed;
+
+	@TableField(exist = false)
+    private List<Category> children;
+
+    @TableField(exist = false)
+    private List<Map<String, String>> fileList;
+
+	@TableField(exist = false)
+    private String fileUrl;
 
 	@Override
     protected Serializable pkVal() {

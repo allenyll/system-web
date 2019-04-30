@@ -4,6 +4,8 @@ import com.sw.common.entity.system.TreeNode;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 /**
  * @Description:  商品分类树
  * @Author:       allenyll
@@ -27,4 +29,8 @@ public class CategoryTree extends TreeNode {
     private String isUsed;
 
     private boolean spread = false;
+
+    private String url;
+
+    private List<CategoryTree> child;
 }

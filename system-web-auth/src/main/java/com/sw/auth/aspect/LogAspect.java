@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
@@ -88,8 +89,9 @@ public class LogAspect {
 
         // 获取request
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
+        HttpServletResponse response = HttpContextUtils.getHttpServletResponse();
         // 设置IP地址
-        sysLog.setIp(IPUtil.getIpAddr(request));
+        sysLog.setIp(IPUtil.getIpAddr(request, response));
 
         String userId = redisService.get("userId");
         String account = redisService.get("account");

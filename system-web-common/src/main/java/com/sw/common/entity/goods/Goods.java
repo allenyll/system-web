@@ -1,5 +1,6 @@
 package com.sw.common.entity.goods;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -96,6 +97,9 @@ public class Goods extends Entity<Goods>  {
 
 	// 备注
     private String remark;
+
+    @TableField(exist = false)
+    private String fileUrl;
 
 	@Override
     protected Serializable pkVal() {

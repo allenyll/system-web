@@ -29,7 +29,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("com.sw"))
+                .apis(RequestHandlerSelectors.basePackage("com.sw.all"))
                 .paths(PathSelectors.any())
                 .build();
     }

@@ -132,7 +132,7 @@ public class CustomerPointController extends BaseController<CustomerPointService
         EntityWrapper<CustomerPointDetail> wrapper = new EntityWrapper<>();
         wrapper.eq("FK_CUSTOMER_ID", customerId);
         wrapper.eq("TYPE", action);
-        wrapper.eq("IS_DELETED", 0);
+        wrapper.eq("IS_DELETE", 0);
         Page<CustomerPointDetail> pageList = new Page<>(page, 10);
         List<CustomerPointDetail> list = customerPointDetailMapper.selectPage(pageList, wrapper);
 
