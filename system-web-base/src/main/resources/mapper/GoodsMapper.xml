@@ -28,6 +28,16 @@
         <result property="goodsSeq" column="goods_seq"/>
         <result property="isUsed" column="is_used"/>
         <result property="status" column="status"/>
+        <result property="isSpec" column="is_spec"/>
+        <result property="isBest" column="is_best"/>
+        <result property="isHot" column="is_hot"/>
+        <result property="isNew" column="is_new"/>
+        <result property="isRecom" column="is_recom"/>
+        <result property="saleNum" column="sale_num"/>
+        <result property="saleTime" column="sale_time"/>
+        <result property="visitNum" column="visit_num"/>
+        <result property="appraiseNum" column="appraise_num"/>
+        <result property="goodsTips" column="goods_tips"/>
         <result property="remark" column="remark"/>
         <result property="isDelete" column="is_delete"/>
         <result property="addUser" column="add_user"/>
@@ -61,6 +71,16 @@
         goods_seq
         is_used
         status
+        is_spec
+        is_best
+        is_hot
+        is_new
+        is_recom
+        sale_num
+        sale_time
+        visit_num
+        appraise_num
+        goods_tips
         remark
         is_delete
         add_user

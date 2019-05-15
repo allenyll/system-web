@@ -1,4 +1,4 @@
-package com.sw.base.Job.customer;
+package com.sw.base.job.customer;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.base.service.impl.customer.CustomerPointDetailServiceImpl;

@@ -21,7 +21,7 @@ import javax.persistence.*;
  * @date 2019-03-21 10:51:04
  */
 @Data
-@TableName("t_snu_category")
+@TableName("snu_category")
 public class Category extends Entity<Category>  {
 
 	private static final long serialVersionUID = 1L;

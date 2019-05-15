@@ -6,45 +6,55 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.sw.common.entity.Entity;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 
 /**
- * 尺码表
+ * 商品库存单位
  * 
  * @author allenyll
  * @email 806141743@qq.com
- * @date 2019-03-21 10:50:24
+ * @date 2019-05-11 22:07:42
  */
 @Data
-@TableName("snu_size")
-public class Size extends Entity<Size>  {
+@TableName("snu_sku")
+public class Sku extends Entity<Sku>  {
 
 	private static final long serialVersionUID = 1L;
 
-	// 尺码主键
+	// 主键id
     @TableId(type = IdType.UUID)
-    private String pkSizeId;
+    private String pkSkuId;
 
-	// 分组主键
-    private String fkSizeGroupId;
+	// 商品主键
+    private String fkGoodsId;
 
 	// 名称
-    private String sizeName;
+    private String skuName;
 
 	// 编码
-    private String sizeCode;
+    private String skuCodee;
 
-	// 是否启用
-    private String isUsed;
+	// 条形码
+    private String skuBarCode;
 
-	// 是否默认
-    private String isDefault;
+	// 数量
+    private Integer skuNum;
+
+	// 库存
+    private Integer skuStock;
+
+	// 价格
+    private BigDecimal skuPrice;
+
+	// 状态
+    private String skuStatus;
 
 	@Override
     protected Serializable pkVal() {
-		return pkSizeId;
+		return pkSkuId;
 	}
 
 

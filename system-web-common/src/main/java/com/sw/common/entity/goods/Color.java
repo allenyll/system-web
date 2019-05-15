@@ -18,7 +18,7 @@ import javax.persistence.*;
  * @date 2019-03-21 10:34:48
  */
 @Data
-@TableName("t_snu_color")
+@TableName("snu_color")
 public class Color extends Entity<Color>  {
 
 	private static final long serialVersionUID = 1L;

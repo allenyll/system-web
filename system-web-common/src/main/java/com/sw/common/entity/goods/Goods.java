@@ -1,6 +1,7 @@
 package com.sw.common.entity.goods;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.sw.common.entity.system.File;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -9,6 +10,7 @@ import com.sw.common.entity.Entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -20,7 +22,7 @@ import javax.persistence.*;
  * @date 2019-03-21 10:51:24
  */
 @Data
-@TableName("t_snu_goods")
+@TableName("snu_goods")
 public class Goods extends Entity<Goods>  {
 
 	private static final long serialVersionUID = 1L;
@@ -77,6 +79,9 @@ public class Goods extends Entity<Goods>  {
 	// 商品图片
     private String goodsUrl;
 
+    // 商品简介
+    private String goodsBrief;
+
 	// 商品详情
     private String goodsDesc;
 
@@ -95,8 +100,41 @@ public class Goods extends Entity<Goods>  {
 	// 商品状态 SW1401 上架 SW1402 下架 SW1403 预售
     private String status;
 
+    // 是否有规格
+    private String isSpec;
+
+    // 是否精品
+    private String isBest;
+
+    // 是否热卖
+    private String isHot;
+
+    // 是否新品
+    private String isNew;
+
+    // 是否推荐
+    private String isRecom;
+
+    // 总销量
+    private Integer saleNum;
+
+    // 上架时间
+    private String saleTime;
+
+    // 访问量
+    private Integer visitNum;
+
+    // 评价数
+    private Integer appraiseNum;
+
+    // 促销信息
+    private String goodsTips;
+
 	// 备注
     private String remark;
+
+    @TableField(exist = false)
+    private List<File> fileList;
 
     @TableField(exist = false)
     private String fileUrl;

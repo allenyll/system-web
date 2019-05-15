@@ -19,7 +19,7 @@ import javax.persistence.*;
  * @date 2019-04-10 16:24:29
  */
 @Data
-@TableName("t_snu_customer_balance_detail")
+@TableName("snu_customer_balance_detail")
 public class CustomerBalanceDetail extends Entity<CustomerBalanceDetail>  {
 
 	private static final long serialVersionUID = 1L;

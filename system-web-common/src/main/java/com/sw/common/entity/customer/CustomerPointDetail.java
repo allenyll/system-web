@@ -19,7 +19,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-@TableName("t_snu_customer_point_detail")
+@TableName("snu_customer_point_detail")
 public class CustomerPointDetail extends Entity<CustomerPointDetail> {
 
     private static final long serialVersionUID = 1L;

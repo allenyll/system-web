@@ -18,7 +18,7 @@ import javax.persistence.*;
  * @date 2019-03-21 10:46:28
  */
 @Data
-@TableName("t_snu_size_group")
+@TableName("snu_size_group")
 public class SizeGroup extends Entity<SizeGroup>  {
 
 	private static final long serialVersionUID = 1L;

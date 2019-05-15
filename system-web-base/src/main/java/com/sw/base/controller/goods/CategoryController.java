@@ -50,10 +50,14 @@ public class CategoryController extends BaseController<CategoryServiceImpl,Categ
         List<Map<String, String>> newList = new ArrayList<>();
         if(!CollectionUtils.isEmpty(list)){
             for(Category category:list){
+              /*  if("0".equals(category.getParentId())){
+                    continue;
+                }*/
                 Map<String, String> _map = new HashMap<>();
                 map.put(category.getPkCategoryId(), category.getCategoryName());
                 _map.put("label", category.getCategoryName());
                 _map.put("value", category.getPkCategoryId());
+                _map.put("parentId", category.getParentId());
                 newList.add(_map);
             }
         }
@@ -176,6 +180,8 @@ public class CategoryController extends BaseController<CategoryServiceImpl,Categ
         File file = getFile(category);
         if(file != null){
             category.setFileUrl(file.getFileUrl());
+        }else{
+            file = new File();
         }
 
         // 获取子分类

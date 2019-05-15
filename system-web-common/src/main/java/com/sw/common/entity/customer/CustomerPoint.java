@@ -18,7 +18,7 @@ import lombok.ToString;
  * @author yu.leilei
  * @since 2019-01-09
  */
-@TableName("t_snu_customer_point")
+@TableName("snu_customer_point")
 @ToString
 @Data
 public class CustomerPoint extends Entity<CustomerPoint> {

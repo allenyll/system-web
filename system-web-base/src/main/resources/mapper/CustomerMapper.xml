@@ -46,7 +46,7 @@
 	</sql>
 
 	<select id="count" parameterType="map" resultType="int">
-		select count(*) from t_snu_customer t <include refid="whereSql"/>
+		select count(*) from snu_customer t <include refid="whereSql"/>
 	</select>
 
 	<select id="page" parameterType="map" resultType="com.sw.common.entity.customer.Customer">
@@ -71,7 +71,7 @@
 		t.add_time as "addtime",
 		t1.name as "statusName",
 		t2.name as "genderName"
-		from t_snu_customer t
+		from snu_customer t
 		left join sys_dict t1 on t1.code = t.status
 		left join sys_dict t2 on t2.code = t.gender
 		<include refid="whereSql"/>

@@ -4,7 +4,7 @@ public final class GeneratorConstants {
 
     public static final String SYS_PREFIX = "sys_";
 
-    public static final String SNU_PREFIX = "t_snu_";
+    public static final String SNU_PREFIX = "snu_";
 
     public static final String PK = "PRI";
 

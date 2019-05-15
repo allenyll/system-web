@@ -72,7 +72,6 @@ public class GoodsController extends BaseController<GoodsServiceImpl,Goods> {
             }
         }
 
-
         if(total%limit == 0){
             totalPage = total/limit;
         }else{
@@ -86,6 +85,24 @@ public class GoodsController extends BaseController<GoodsServiceImpl,Goods> {
         return DataResponse.success(result);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getGoodsInfo/{id}", method = RequestMethod.POST)
+    public DataResponse getGoodsInfo(@PathVariable String id){
+        Map<String, Object> result = new HashMap<>();
+        DataResponse data = super.get(id);
+
+        Goods goods = (Goods) data.get("obj");
+        if(goods == null){
+            return DataResponse.fail("商品不存在");
+        }
+
+        setFile(goods);
+
+        result.put("data", goods);
+
+        return DataResponse.success(result);
+    }
+
     private void setFile(Goods goods) {
         EntityWrapper<File> fileEntityWrapper = new EntityWrapper<>();
         fileEntityWrapper.eq("IS_DELETE", 0);
@@ -93,6 +110,7 @@ public class GoodsController extends BaseController<GoodsServiceImpl,Goods> {
         fileEntityWrapper.eq("FK_ID", goods.getPkGoodsId());
         List<File> sysFiles = fileService.selectList(fileEntityWrapper);
         if(CollectionUtil.isNotEmpty(sysFiles)){
+            goods.setFileList(sysFiles);
             goods.setFileUrl(sysFiles.get(0).getFileUrl());
         }else{
             goods.setFileUrl(DEFAULT_URL);

@@ -17,7 +17,7 @@ import lombok.Data;
  * @since 2018-10-22
  */
 @Data
-@TableName("t_snu_customer")
+@TableName("snu_customer")
 public class Customer extends Entity<Customer> {
 
     private static final long serialVersionUID = 1L;

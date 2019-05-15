@@ -18,7 +18,7 @@ import javax.persistence.*;
  * @date 2019-03-21 10:04:09
  */
 @Data
-@TableName("t_snu_brand")
+@TableName("snu_brand")
 public class Brand extends Entity<Brand>  {
 
 	private static final long serialVersionUID = 1L;

@@ -11,31 +11,34 @@ import javax.persistence.*;
 
 
 /**
- * 颜色分组表
+ * 规格选项
  * 
  * @author allenyll
  * @email 806141743@qq.com
- * @date 2019-03-21 10:29:56
+ * @date 2019-05-13 16:09:07
  */
 @Data
-@TableName("snu_color_group")
-public class ColorGroup extends Entity<ColorGroup>  {
+@TableName("snu_spec_option")
+public class SpecOption extends Entity<SpecOption>  {
 
 	private static final long serialVersionUID = 1L;
 
-	// 分组主键
+	// 规格选项
     @TableId(type = IdType.UUID)
-    private String pkColorGroupId;
+    private String pkSpecOptionId;
 
-	// 分组名称
-    private String colorGroupName;
+	// 
+    private String fkSpecsId;
 
-	// 分组编码
-    private String colorCode;
+	// 名称
+    private String name;
+
+	// 编码
+    private String code;
 
 	@Override
     protected Serializable pkVal() {
-		return pkColorGroupId;
+		return pkSpecOptionId;
 	}
 
 
