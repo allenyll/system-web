@@ -7,8 +7,8 @@ server:
   port: 8080
   #ssl:
     #key-store: classpath:www.allenyll.com.jks
-    #key-store-password: 58024myself
-    #keyStoreType: JKS
+    #key-store-password:
+    #keyStoreType: 
 ###################  数据源配置  ###################
 db:
   profiles: dev
