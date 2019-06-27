@@ -86,7 +86,7 @@ fdfs:
   #tracker地址
   trackerList:
   #通过nginx 访问地址
-  #fdfs.webServerUrl=http://132.232.216.185:9999/
+  #
   #缩略图配置
   thumb-image:
     height: 150
