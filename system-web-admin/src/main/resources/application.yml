@@ -18,7 +18,7 @@ db:
     password: 58024myself
     filters: log4j,wall,mergeStat
   ds2:
-    url: jdbc:mysql://132.232.216.185:3306/boot_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3306/boot_web?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: 58024myself
     filters: log4j,wall,mergeStat
@@ -47,10 +47,10 @@ spring:
     password: guest
     publisher-confirms: true
     virtual-host: /
-  thymeleaf:
-    mode: LEGACYHTML5
-    cache: false
-    encoding: UTF-8
+  #thymeleaf:
+    #mode: LEGACYHTML5
+    #cache: false
+    #encoding: UTF-8
   #redis
   redis:
     host: localhost
@@ -84,7 +84,7 @@ fdfs:
   connect-timeout: 600
   so-timeout: 1500
   #tracker地址
-  trackerList: 132.232.216.185:22122
+  trackerList:
   #通过nginx 访问地址
   #fdfs.webServerUrl=http://132.232.216.185:9999/
   #缩略图配置
@@ -93,13 +93,19 @@ fdfs:
     width: 150
   #spring.jmx.enabled=false
   #通过nginx 访问地址
-  resHost: 132.232.216.185
+  resHost:
   storagePort: 443
   #获取连接池最大数量
   pool:
     max-total: 200
 
-
+cos:
+  bucketName: system-web-1257935390
+  region: ap-chengdu
+  appId:
+  SecretId:
+  SecretKey:
+  cosUrl: https://system-web-1257935390.cos.ap-chengdu.myqcloud.com
 
 #################### JWT配置  ###################
 jwt:
@@ -125,14 +131,14 @@ jwt:
 auth:
   wechat:
     sessionHost: https://api.weixin.qq.com/sns/jscode2session
-    appId: wx95a6a02397595ace
-    appSecret: 52c970fbbf76dd8a5ea4b942fca5f6b3
+    appId:
+    appSecret:
     grantType: authorization_code
     systemWebUrl: http://localhost:8080/system-web/
     username: yll
     password: 123
-    mchId:  1529366201
-    key: e970d69349bd4b50a033386534860eb3
+    mchId:
+    key:
     orderUrl: https://api.mch.weixin.qq.com/pay/unifiedorder
     signType: MD5
     tradeType: JSAPI
