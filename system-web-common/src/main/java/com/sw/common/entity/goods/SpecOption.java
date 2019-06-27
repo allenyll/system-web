@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 /**
  * 规格选项
- * 
+ *
  * @author allenyll
  * @email 806141743@qq.com
  * @date 2019-05-13 16:09:07
@@ -27,7 +27,7 @@ public class SpecOption extends Entity<SpecOption>  {
     @TableId(type = IdType.UUID)
     private String pkSpecOptionId;
 
-	// 
+	//
     private String fkSpecsId;
 
 	// 名称

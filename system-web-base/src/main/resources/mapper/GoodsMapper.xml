@@ -7,10 +7,9 @@
     <resultMap type="com.sw.common.entity.goods.Goods" id="goodsMap">
         <result property="pkGoodsId" column="pk_goods_id"/>
         <result property="fkBrandId" column="fk_brand_id"/>
+        <result property="fkSpecCategoryId" column="fk_spec_category_id"/>
         <result property="fkCategoryId" column="fk_category_id"/>
-        <result property="fkColorId" column="fk_color_id"/>
         <result property="fkUnitId" column="fk_unit_id"/>
-        <result property="fkSizeId" column="fk_size_id"/>
         <result property="goodsName" column="goods_name"/>
         <result property="goodsCode" column="goods_code"/>
         <result property="goodsBarCode" column="goods_bar_code"/>
@@ -37,6 +36,16 @@
         <result property="saleTime" column="sale_time"/>
         <result property="visitNum" column="visit_num"/>
         <result property="appraiseNum" column="appraise_num"/>
+        <result property="giftGrowth" column="gift_growth"/>
+        <result property="pointLimit" column="point_limit"/>
+        <result property="weight" column="weight"/>
+        <result property="serviceIds" column="service_ids"/>
+        <result property="keywords" column="keywords"/>
+        <result property="promotionPrice" column="promotion_price"/>
+        <result property="promotionStartTime" column="promotion_start_time"/>
+        <result property="promotionEndTime" column="promotion_end_time"/>
+        <result property="promotionPerLimit" column="promotion_per_limit"/>
+        <result property="promotionType" column="promotion_type"/>
         <result property="goodsTips" column="goods_tips"/>
         <result property="remark" column="remark"/>
         <result property="isDelete" column="is_delete"/>
@@ -50,10 +59,9 @@
     <sql id="Base_Column_List">
         pk_goods_id
         fk_brand_id
+        fk_spec_category_id
         fk_category_id
-        fk_color_id
         fk_unit_id
-        fk_size_id
         goods_name
         goods_code
         goods_bar_code
@@ -80,6 +88,16 @@
         sale_time
         visit_num
         appraise_num
+        gift_growth
+        point_limit
+        weight
+        service_ids
+        keywords
+        promotion_price
+        promotion_start_time
+        promotion_end_time
+        promotion_per_limit
+        promotion_type
         goods_tips
         remark
         is_delete

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.sw.base.mapper.system.FileMapper">
+<mapper namespace="com.sw.base.mapper.order.CartMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.sw.common.entity.system.File" id="fileMap">
-        <result property="pkFileId" column="pk_file_id"/>
-        <result property="fkId" column="fk_id"/>
-        <result property="fileType" column="file_type"/>
-        <result property="fileUrl" column="file_url"/>
-        <result property="downloadUrl" column="download_url"/>
-        <result property="remark" column="remark"/>
+    <resultMap type="com.sw.common.entity.order.Cart" id="cartMap">
+        <result property="pkCartId" column="pk_cart_id"/>
+        <result property="fkGoodsId" column="fk_goods_id"/>
+        <result property="fkSkuId" column="fk_sku_id"/>
+        <result property="fkCustomerId" column="fk_customer_id"/>
+        <result property="quantity" column="quantity"/>
+        <result property="price" column="price"/>
+        <result property="specValue" column="spec_value"/>
         <result property="isDelete" column="is_delete"/>
         <result property="addUser" column="add_user"/>
         <result property="addTime" column="add_time"/>
@@ -20,12 +21,13 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        pk_file_id
-        fk_id
-        file_type
-        file_url
-        download_url
-        remark
+        pk_cart_id
+        fk_goods_id
+        fk_sku_id
+        fk_customer_id
+        quantity
+        price
+        spec_value
         is_delete
         add_user
         add_time

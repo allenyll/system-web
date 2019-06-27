@@ -33,7 +33,7 @@ public class BaseController<Service extends BaseService, T extends Entity>{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
-    protected static final String DEFAULT_URL = "http://www.allenyll.com:9999/group1/M00/00/00/rBsAA1zFm36AdyJXAAAmZMk0KxA04.jpeg";
+    protected static final String DEFAULT_URL = "https://system-web-1257935390.cos.ap-chengdu.myqcloud.com/images/no.jpeg";
 
     @Autowired
     protected IRedisService redisService;

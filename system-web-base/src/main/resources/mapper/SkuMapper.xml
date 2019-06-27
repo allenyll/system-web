@@ -8,12 +8,15 @@
         <result property="pkSkuId" column="pk_sku_id"/>
         <result property="fkGoodsId" column="fk_goods_id"/>
         <result property="skuName" column="sku_name"/>
-        <result property="skuCodee" column="sku_codee"/>
+        <result property="skuCode" column="sku_code"/>
         <result property="skuBarCode" column="sku_bar_code"/>
         <result property="skuNum" column="sku_num"/>
+        <result property="specValue" column="spec_value"/>
         <result property="skuStock" column="sku_stock"/>
+        <result property="warnStock" column="warn_stock"/>
         <result property="skuPrice" column="sku_price"/>
         <result property="skuStatus" column="sku_status"/>
+        <result property="picUrl" column="pic_url"/>
         <result property="isDelete" column="is_delete"/>
         <result property="addUser" column="add_user"/>
         <result property="addTime" column="add_time"/>
@@ -26,12 +29,15 @@
         pk_sku_id
         fk_goods_id
         sku_name
-        sku_codee
+        sku_code
         sku_bar_code
         sku_num
+        spec_value
         sku_stock
+        warn_stock
         sku_price
         sku_status
+        pic_url
         is_delete
         add_user
         add_time

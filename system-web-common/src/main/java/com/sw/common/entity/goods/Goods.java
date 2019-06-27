@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 /**
  * 商品基本信息表
- * 
+ *
  * @author allenyll
  * @email 806141743@qq.com
  * @date 2019-03-21 10:51:24
@@ -34,17 +34,12 @@ public class Goods extends Entity<Goods>  {
 	// 品牌主键
     private String fkBrandId;
 
-	// 分类主键
-    private String fkCategoryId;
+    private String fkSpecCategoryId;
 
-	// 颜色主键
-    private String fkColorId;
+    private String fkCategoryId;
 
 	// 单位主键
     private String fkUnitId;
-
-	// 尺码主键
-    private String fkSizeId;
 
 	// 商品名称
     private String goodsName;
@@ -126,6 +121,35 @@ public class Goods extends Entity<Goods>  {
 
     // 评价数
     private Integer appraiseNum;
+
+    // 购买赠送多少会员成长值
+    private Integer giftGrowth;
+
+    //
+    private Integer pointLimit;
+
+    // 重量
+    private BigDecimal weight;
+
+    // 以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮
+    private String serviceIds;
+
+    // 关键字
+    private String keywords;
+
+    private BigDecimal promotionPrice;
+
+    // 促销开始时间
+    private String promotionStartTime;
+
+    // 促销结束时间
+    private String promotionEndTime;
+
+    // 促销限购数量
+    private String promotionPerLimit;
+
+    // 促销类型
+    private String promotionType;
 
     // 促销信息
     private String goodsTips;

@@ -1,4 +1,4 @@
-package com.sw.common.entity.system;
+package com.sw.common.entity.order;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -6,45 +6,49 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.sw.common.entity.Entity;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
 
 /**
- * 文件相关信息
+ * 购物车明细
  *
  * @author allenyll
  * @email 806141743@qq.com
- * @date 2019-03-26 21:28:23
+ * @date 2019-06-24 10:22:55
  */
 @Data
-@TableName("sys_file")
-public class File extends Entity<File>  {
+@TableName("snu_cart")
+public class Cart extends Entity<Cart>  {
 
 	private static final long serialVersionUID = 1L;
 
-	// 文件主键
+	// 主键ID
     @TableId(type = IdType.UUID)
-    private String pkFileId;
+    private String pkCartId;
 
-	// 外键Id
-    private String fkId;
+	// 商品ID
+    private String fkGoodsId;
 
-	// 文件类型
-    private String fileType;
+	// SKU ID
+    private String fkSkuId;
 
-	// 文件路径
-    private String fileUrl;
+	// 会员ID
+    private String fkCustomerId;
 
-    // 文件下载路径
-    private String downloadUrl;
+	// 数量
+    private Integer quantity;
 
-	// 备注
-    private String remark;
+	// 价格
+    private BigDecimal price;
+
+	//
+    private String specValue;
 
 	@Override
     protected Serializable pkVal() {
-		return pkFileId;
+		return pkCartId;
 	}
 
 

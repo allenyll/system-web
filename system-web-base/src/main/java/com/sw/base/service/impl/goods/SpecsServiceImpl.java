@@ -1,5 +1,6 @@
 package com.sw.base.service.impl.goods;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sw.common.entity.goods.Specs;
@@ -7,6 +8,8 @@ import com.sw.base.mapper.goods.SpecsMapper;
 import com.sw.common.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Map;
 
 /**
  * 规格表
@@ -19,4 +22,11 @@ import org.slf4j.LoggerFactory;
 public class SpecsServiceImpl extends BaseService<SpecsMapper,Specs> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SpecsServiceImpl.class);
+
+    @Autowired
+    SpecsMapper specsMapper;
+
+    public Map<String, Object> getSpecs(String id) {
+        return specsMapper.getSpecs(id);
+    }
 }

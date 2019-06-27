@@ -1,7 +1,10 @@
 package com.sw.common.util;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 字符串 工具类
@@ -156,6 +159,30 @@ public class StringUtil {
      */
     public static boolean isNotEmpty(Object strVal) {
         return !isEmpty(strVal);
+    }
+
+    public static String getOrderNo(String id, SimpleDateFormat format){
+        StringBuilder sb = new StringBuilder();
+        //日期
+        sb.append(format.format(new Date()));
+        //四位主键id
+        String regEx="[^0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(id);
+        String numStr = m.replaceAll("").trim();
+        if (numStr.length() > 19){
+            numStr = numStr.substring(0, 18);
+        }
+        String _id = String.format("%04d", Long.parseLong(numStr)).substring(0,4);
+        sb.append(_id);
+        //三位随机数
+        String result="";
+        Random random=new Random();
+        for(int i=0;i<3;i++){
+            result += random.nextInt(10);
+        }
+        sb.append(result);
+        return sb.toString();
     }
 
     /**

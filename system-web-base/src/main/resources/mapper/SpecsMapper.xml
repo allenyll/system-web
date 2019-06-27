@@ -39,4 +39,18 @@
         update_time
     </sql>
 
+    <select id="getSpecs" parameterType="String" resultType="map">
+        SELECT
+            t.pk_specs_id as pkGoodsId,
+            t.specs_name as specName,
+            t.pk_specs_id as "specId"
+        FROM
+            snu_specs t
+        left join snu_spec_option t1 on t1.fk_specs_id = t.pk_specs_id
+        where t.is_delete = 0
+        and t.status = 'SW1001'
+        and t1.is_delete = 0
+        and t1.pk_spec_option_id = #{id}
+    </select>
+
 </mapper>

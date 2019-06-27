@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sw.base.mapper.order.OrderMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.sw.common.entity.order.Order" id="orderMap">
+        <result property="pkOrderId" column="pk_order_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="fkCustomerId" column="fk_customer_id"/>
+        <result property="orderType" column="order_type"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="afterStatus" column="after_status"/>
+        <result property="goodsCount" column="goods_count"/>
+        <result property="orderAmount" column="order_amount"/>
+        <result property="payAmount" column="pay_amount"/>
+        <result property="totalAmount" column="total_amount"/>
+        <result property="logisticsFee" column="logistics_fee"/>
+        <result property="fkAddressId" column="fk_address_id"/>
+        <result property="payChannel" column="pay_channel"/>
+        <result property="tradeNo" column="trade_no"/>
+        <result property="escrowTradeNo" column="escrow_trade_no"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="confirmStatus" column="confirm_status"/>
+        <result property="receiveTime" column="receive_time"/>
+        <result property="commentTime" column="comment_time"/>
+        <result property="settlementStatus" column="settlement_status"/>
+        <result property="settlementTime" column="settlement_time"/>
+        <result property="fkCouponId" column="fk_coupon_id"/>
+        <result property="promotionAmount" column="promotion_amount"/>
+        <result property="integrationAmount" column="integration_amount"/>
+        <result property="couponAmount" column="coupon_amount"/>
+        <result property="discountAmount" column="discount_amount"/>
+        <result property="autoConfirmDay" column="auto_confirm_day"/>
+        <result property="integration" column="integration"/>
+        <result property="growth" column="growth"/>
+        <result property="promotionInfo" column="promotion_info"/>
+        <result property="billType" column="bill_type"/>
+        <result property="billHeader" column="bill_header"/>
+        <result property="billContent" column="bill_content"/>
+        <result property="billReceiverPhone" column="bill_receiver_phone"/>
+        <result property="billReceiverEmail" column="bill_receiver_email"/>
+        <result property="isIntegral" column="is_integral"/>
+        <result property="orderRemark" column="order_remark"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="addUser" column="add_user"/>
+        <result property="addTime" column="add_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        pk_order_id
+        order_no
+        fk_customer_id
+        order_type
+        order_status
+        after_status
+        goods_count
+        order_amount
+        pay_amount
+        total_amount
+        logistics_fee
+        fk_address_id
+        pay_channel
+        trade_no
+        escrow_trade_no
+        pay_time
+        order_time
+        delivery_time
+        confirm_status
+        receive_time
+        comment_time
+        settlement_status
+        settlement_time
+        fk_coupon_id
+        promotion_amount
+        integration_amount
+        coupon_amount
+        discount_amount
+        auto_confirm_day
+        integration
+        growth
+        promotion_info
+        bill_type
+        bill_header
+        bill_content
+        bill_receiver_phone
+        bill_receiver_email
+        is_integral
+        order_remark
+        is_delete
+        add_user
+        add_time
+        update_user
+        update_time
+    </sql>
+
+</mapper>
