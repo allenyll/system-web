@@ -105,7 +105,7 @@ cos:
   appId:
   SecretId:
   SecretKey:
-  cosUrl: https://system-web-1257935390.cos.ap-chengdu.myqcloud.com
+  cosUrl: 
 
 #################### JWT配置  ###################
 jwt:
@@ -135,8 +135,8 @@ auth:
     appSecret:
     grantType: authorization_code
     systemWebUrl: http://localhost:8080/system-web/
-    username: yll
-    password: 123
+    username: 
+    password: 
     mchId:
     key:
     orderUrl: https://api.mch.weixin.qq.com/pay/unifiedorder
