@@ -2,11 +2,16 @@ package com.sw.base.controller.pay;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.base.service.impl.customer.CustomerServiceImpl;
+import com.sw.base.service.impl.order.OrderServiceImpl;
 import com.sw.base.service.impl.pay.TransactionServiceImpl;
 import com.sw.cache.service.IRedisService;
 import com.sw.cache.util.DataResponse;
+import com.sw.common.constants.dict.OrderStatusDict;
+import com.sw.common.constants.dict.OrderTradeDict;
+import com.sw.common.constants.dict.OrderTypeDict;
 import com.sw.common.constants.dict.PayTypeDict;
 import com.sw.common.entity.customer.Customer;
+import com.sw.common.entity.order.Order;
 import com.sw.common.entity.pay.Transaction;
 import com.sw.common.properties.WxProperties;
 import com.sw.common.util.*;
@@ -23,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.*;
@@ -39,6 +46,8 @@ public class WxPayController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WxPayController.class);
 
+    private static final String NOTIFY_URL = "https://www.allenyll.com/system-web/pay/payCallback";
+
     @Autowired
     WxProperties wxProperties;
 
@@ -47,6 +56,9 @@ public class WxPayController {
 
     @Autowired
     CustomerServiceImpl customerService;
+
+    @Autowired
+    OrderServiceImpl orderService;
 
     @ResponseBody
     @RequestMapping(value = "createUnifiedOrder", method = RequestMethod.POST)
@@ -67,10 +79,11 @@ public class WxPayController {
         String payName = request.getParameter("payName");
         //支付备注
         String remark = request.getParameter("remark");
+        String orderId = request.getParameter("orderId");
         //接口调用总金额单位为分换算一下(测试金额改成1,单位为分则是0.01,根据自己业务场景判断是转换成float类型还是int类型)
         //String amountFen = Integer.valueOf((Integer.parseInt(amount)*100)).toString();
         //String amountFen = Float.valueOf((Float.parseFloat(amount)*100)).toString();
-        String amountFen = "1";
+        String amountFen = new BigDecimal(amount).multiply(new BigDecimal("100")).toString();
         //创建hashmap(用户获得签名)
         SortedMap<String, String> paraMap = new TreeMap<String, String>();
         //设置body变量 (支付成功显示在微信支付 商品详情中)
@@ -96,7 +109,7 @@ public class WxPayController {
         //设置请求参数(终端IP)
         paraMap.put("spbill_create_ip", IPUtil.getIpAddr(request, response));
         //设置请求参数(通知地址)
-        paraMap.put("notify_url", "http://localhost:8080/payNotify");
+        paraMap.put("notify_url", NOTIFY_URL);
         //设置请求参数(交易类型)
         paraMap.put("trade_type", "JSAPI");
         //设置请求参数(openid)(在接口文档中 该参数 是否必填项 但是一定要注意 如果交易类型设置成'JSAPI'则必须传入openid)
@@ -147,6 +160,7 @@ public class WxPayController {
                 transaction.setTransactionNo(outTradeNo);
                 transaction.setFkCustomerId(customerId);
                 transaction.setIntegral(0);
+                transaction.setFkOrderId(orderId);
                 transaction.setSource(payName);
                 transaction.setTransactionTime(DateUtil.getCurrentDateTime());
                 transaction.setAmount(new BigDecimal(amount));
@@ -242,19 +256,99 @@ public class WxPayController {
         return DataResponse.success(result);
     }
 
+    @RequestMapping(value = "/payCallback")
+    public void payCallback(HttpServletRequest request,HttpServletResponse response) {
+        LOGGER.info("微信回调接口方法 start");
+        LOGGER.info("微信回调接口 操作逻辑 start");
+        String inputLine = "";
+        String notityXml = "";
+        try {
+            while((inputLine = request.getReader().readLine()) != null){
+                notityXml += inputLine;
+            }
+            //关闭流
+            request.getReader().close();
+            LOGGER.info("微信回调内容信息："+notityXml);
+            //解析成Map
+            Map<String,String> map =  XmlUtil.doXMLParse(notityXml);
+            //判断 支付是否成功
+            if("SUCCESS".equals(map.get("result_code"))){
+                LOGGER.info("微信回调返回是否支付成功：是");
+                //获得 返回的商户订单号
+                String outTradeNo = map.get("out_trade_no");
+                LOGGER.info("微信回调返回商户订单号："+outTradeNo);
+                EntityWrapper<Transaction> wrapper = new EntityWrapper<>();
+                wrapper.eq("TRANSACTION_NO", outTradeNo);
+                wrapper.eq("IS_DELETE", 0);
+                //访问DB
+                Transaction payInfo = transactionService.selectOne(wrapper);
+                LOGGER.info("微信回调 根据订单号查询订单状态："+payInfo.getStatus());
+                if(OrderTradeDict.START.getCode().equals(payInfo.getStatus())){
+                    //修改支付状态
+                    payInfo.setStatus(OrderTradeDict.COMPLETE.getCode());
+                    //更新Bean
+                    boolean sqlRow = transactionService.updateById(payInfo);
+                    //判断 是否更新成功
+                    if(sqlRow){
+                        LOGGER.info("微信回调  订单号："+outTradeNo +",修改状态成功");
+                        //封装 返回值
+                        StringBuffer buffer = new StringBuffer();
+                        buffer.append("<xml>");
+                        buffer.append("<return_code>SUCCESS</return_code>");
+                        buffer.append("<return_msg>OK</return_msg>");
+                        buffer.append("</xml>");
+
+                        //给微信服务器返回 成功标示 否则会一直询问 咱们服务器 是否回调成功
+                        PrintWriter writer = response.getWriter();
+                        //返回
+                        writer.print(buffer.toString());
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @RequestMapping(value = "/updateStatus",method = RequestMethod.POST)
     @ResponseBody
     public DataResponse updateObj(@RequestBody Map<String, Object> params){
         String transactionId = MapUtil.getMapValue(params, "transactionId");
+        String type = MapUtil.getString(params, "type");
         EntityWrapper<Transaction> entityWrapper = new EntityWrapper<>();
         entityWrapper.eq("IS_DELETE", 0);
         entityWrapper.eq("PK_TRANSACTION_ID", transactionId);
         Transaction transaction = transactionService.selectOne(entityWrapper);
         if(transaction != null){
-            transaction.setStatus("SW1202");
-            transactionService.updateById(transaction);
+            //transaction.setStatus("SW1202");
+            //transactionService.updateById(transaction);
+
+            // 更新订单状态
+            if("order".equals(type)){
+                updateOrder(params, transaction);
+            }
         }
         return DataResponse.success();
+    }
+
+
+    private void updateOrder(Map<String, Object> params, Transaction transaction) {
+        String orderId = MapUtil.getString(params, "orderId");
+        Order order = orderService.selectById(orderId);
+        // TODO 订单不存在， 支付渠道改造
+        if(order == null){
+            return;
+        }
+        LOGGER.info("交易支付订单Order: "+order);
+        order.setPayAmount(transaction.getAmount());
+        // TODO 支付渠道改造
+        order.setPayChannel(transaction.getPayChannel());
+        order.setPayTime(transaction.getTransactionTime());
+        order.setOrderStatus(OrderStatusDict.PAY.getCode());
+        order.setTradeNo(transaction.getTransactionNo());
+        orderService.updateById(order);
     }
 
 }

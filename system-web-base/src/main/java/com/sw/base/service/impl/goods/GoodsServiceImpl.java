@@ -51,6 +51,9 @@ public class GoodsServiceImpl extends BaseService<GoodsMapper,Goods> {
     @Autowired
     SpecOptionServiceImpl specOptionService;
 
+    @Autowired
+    BrandServiceImpl brandService;
+
     /**
      * 创建商品
      * @param goodsParam
@@ -168,6 +171,13 @@ public class GoodsServiceImpl extends BaseService<GoodsMapper,Goods> {
         LOGGER.debug("specsList: {}",specsList);
         goodsParam.setSpecsList(specsList);
         goodsParam.setSkuStockMapList(specValueList);
+
+        // 品牌信息
+        Brand  brand = brandService.selectById(goodsParam.getFkBrandId());
+        if(brand == null){
+            brand.setBrandName("品牌失效");
+        }
+        goodsParam.setBrand(brand);
         result.put("obj", goodsParam);
 
         return result;

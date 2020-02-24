@@ -2,16 +2,21 @@ package com.sw.base.controller.goods;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.sw.base.service.impl.shop.SearchHistoryServiceImpl;
 import com.sw.cache.constants.BaseConstants;
 import com.sw.cache.util.DataResponse;
+import com.sw.common.constants.dict.IsOrNoDict;
 import com.sw.common.controller.BaseController;
 import com.sw.base.service.impl.goods.GoodsServiceImpl;
 import com.sw.common.entity.goods.Goods;
 import com.sw.common.entity.goods.GoodsParam;
+import com.sw.common.entity.goods.Specs;
+import com.sw.common.entity.shop.SearchHistory;
 import com.sw.common.entity.system.File;
 import com.sw.common.util.CollectionUtil;
 import com.sw.common.util.DateUtil;
 import com.sw.common.util.MapUtil;
+import com.sw.common.util.StringUtil;
 import com.sw.file.service.impl.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +40,77 @@ public class GoodsController extends BaseController<GoodsServiceImpl,Goods> {
 
     @Autowired
     GoodsServiceImpl goodsService;
+
+    @Autowired
+    SearchHistoryServiceImpl searchHistoryService;
+
+    @Override
+    @ResponseBody
+    @RequestMapping(value = "list", method = RequestMethod.POST)
+    public DataResponse list() {
+        DataResponse dataResponse = super.list();
+        List<Goods> list = (List<Goods>) dataResponse.get("list");
+        Map<String, String> map = new HashMap<>();
+        List<Map<String, String>> newList = new ArrayList<>();
+        if(CollectionUtil.isNotEmpty(list)){
+            for(Goods goods:list){
+                Map<String, String> _map = new HashMap<>();
+                map.put(goods.getPkGoodsId(), goods.getGoodsName());
+                _map.put("label", goods.getGoodsName());
+                _map.put("value", goods.getPkGoodsId());
+                newList.add(_map);
+            }
+        }
+        dataResponse.put("map", map);
+        dataResponse.put("list", newList);
+        return dataResponse;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getGoodsList", method = RequestMethod.POST)
+    public DataResponse getGoodsList(@RequestBody Map<String, Object> params) {
+        String keyword = MapUtil.getString(params, "keyword");
+        EntityWrapper<Goods> wrapper = new EntityWrapper<>();
+        wrapper.eq("IS_DELETE", 0);
+        if(StringUtil.isNotEmpty(keyword)){
+            wrapper.andNew().like("GOODS_NAME", keyword).or().like("GOODS_CODE", keyword);
+        }
+        List<Goods> list = goodsService.selectList(wrapper);
+        Map<String, Object> result = new HashMap<>();
+        result.put("list", list);
+        return DataResponse.success(result);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "getGoodsListByType", method = RequestMethod.POST)
+    public DataResponse getGoodsListByType(@RequestBody Map<String, Object> params) {
+        Map<String, Object> result = new HashMap<>();
+        String goodsType = MapUtil.getString(params, "goodsType");
+        EntityWrapper<Goods> wrapper = new EntityWrapper<>();
+        wrapper.eq("IS_DELETE", 0);
+        wrapper.eq("IS_USED", "SW1302");
+        if (StringUtil.isEmpty(goodsType)) {
+        result.put("goodsList", new ArrayList<>());
+         return DataResponse.success(result);
+        }
+        if ("new".equals(goodsType)) {
+            wrapper.eq("IS_NEW", IsOrNoDict.YES.getCode());
+        } else if ("hot".equals(goodsType)) {
+            wrapper.eq("IS_HOT", IsOrNoDict.YES.getCode());
+        } else if ("recommend".equals(goodsType)) {
+            wrapper.eq("IS_RECOM", IsOrNoDict.YES.getCode());
+        } else if ("best".equals(goodsType)) {
+            wrapper.eq("IS_BEST", IsOrNoDict.YES.getCode());
+        }
+        List<Goods> list = goodsService.selectList(wrapper);
+        if(CollectionUtil.isNotEmpty(list)){
+            for(Goods goods:list){
+                setFile(goods);
+            }
+        }
+        result.put("goodsList", list);
+        return DataResponse.success(result);
+    }
 
     @Override
     @ResponseBody
@@ -223,6 +300,72 @@ public class GoodsController extends BaseController<GoodsServiceImpl,Goods> {
             LOGGER.error("赋值异常");
             e.printStackTrace();
         }
+
+        return DataResponse.success(result);
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/searchGoods", method = RequestMethod.POST)
+    public DataResponse searchGoods(@RequestBody Map<String, Object> params){
+        Map<String, Object> result = new HashMap<>();
+
+        page = MapUtil.getIntValue(params, "page");
+        limit = MapUtil.getIntValue(params, "limit");
+        EntityWrapper<Goods> wrapper = new EntityWrapper<>();
+        wrapper.eq("IS_DELETE", 0);
+        String sort = MapUtil.getString(params, "sort");
+        String order = MapUtil.getString(params, "order");
+        boolean isAsc = true;
+        if ("asc".endsWith(order)) {
+            isAsc = true;
+        } else {
+            isAsc = false;
+        }
+        wrapper.orderBy(true, sort, isAsc);
+        String keyword = MapUtil.getString(params, "keyword");
+        if (StringUtil.isNotEmpty(keyword)) {
+            String time = DateUtil.getCurrentDateTime();
+            // 新增搜索记录
+            String customerId = MapUtil.getString(params, "userId");
+            if (StringUtil.isEmpty(customerId)) {
+                return DataResponse.fail("关联用户为空，无法查询");
+            }
+            SearchHistory searchHistory = new SearchHistory();
+            searchHistory.setFrom("小程序");
+            searchHistory.setKeyword(keyword);
+            searchHistory.setUserId(customerId);
+            searchHistory.setIsDelete(0);
+            searchHistory.setAddTime(time);
+            searchHistory.setAddUser(customerId);
+            searchHistory.setUpdateUser(customerId);
+            searchHistory.setUpdateTime(time);
+            searchHistoryService.insert(searchHistory);
+        }
+        wrapper.like("KEYWORDS", keyword);
+        String categoryId = MapUtil.getMapValue(params, "categoryId");
+        if (StringUtil.isNotEmpty(categoryId)) {
+            wrapper.eq("FK_CATEGORY_ID", categoryId);
+        }
+
+        int total = goodsService.selectCount(wrapper);
+        Page<Goods> pages = service.selectPage(new Page<>(page, limit), wrapper);
+        List<Goods> list = pages.getRecords();
+        if(CollectionUtil.isNotEmpty(list)){
+            for (Goods goods: list){
+                setFile(goods);
+            }
+        }
+
+        if(total%limit == 0){
+            totalPage = total/limit;
+        }else{
+            totalPage = total/limit + 1;
+        }
+
+        result.put("currentPage", page);
+        result.put("totalPage", totalPage);
+        result.put("goods", list);
 
         return DataResponse.success(result);
     }

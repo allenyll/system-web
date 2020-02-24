@@ -8,6 +8,7 @@
         <result property="pkTransactionId" column="pk_transaction_id"/>
         <result property="transactionNo" column="transaction_no"/>
         <result property="fkCustomerId" column="fk_customer_id"/>
+        <result property="fkOrderId" column="fk_order_id"/>
         <result property="amount" column="amount"/>
         <result property="integral" column="integral"/>
         <result property="payChannel" column="pay_channel"/>
@@ -27,6 +28,7 @@
         pk_transaction_id
         transaction_no
         fk_customer_id
+        fk_order_id
         amount
         integral
         pay_channel

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.sw.base.mapper.system.DictMapper;
 import com.sw.common.service.BaseService;
 import com.sw.common.entity.system.Dict;
+import com.sw.common.util.CollectionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,17 @@ public class DictServiceImpl extends BaseService<DictMapper, Dict> {
 
     public List<Dict> selectList(EntityWrapper<Dict> wrapper) {
         return dictMapper.selectList(wrapper);
+    }
+
+
+    public Dict getDictByCode(String code){
+        EntityWrapper<Dict> wrapper = new EntityWrapper<>();
+        wrapper.eq("IS_DELETE", 0);
+        wrapper.eq("CODE", code);
+        List<Dict> dictList = dictMapper.selectList(wrapper);
+        if(CollectionUtil.isNotEmpty(dictList)){
+            return dictList.get(0);
+        }
+        return null;
     }
 }

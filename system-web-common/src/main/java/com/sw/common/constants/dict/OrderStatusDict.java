@@ -9,10 +9,13 @@ public enum OrderStatusDict {
 
     START("SW0701", "未付款"),
     PAY("SW0702", "已付款"),
-    RECEIVE("SW0703", "已收货"),
-    APPRAISE("SW0704", "已评价"),
-    COMPLETE("SW0705", "已完成"),
-    CANCEL("SW0706", "已取消");
+    DELIVERY("SW0703", "已发货"),
+    RECEIVE("SW0704", "已收货"),
+    APPRAISE("SW0705", "已评价"),
+    COMPLETE("SW0706", "已完成"),
+    CANCEL("SW0707", "已取消"),
+    CLOSE("SW0708", "已关闭"),
+    UN_EFFECT("SW0709", "失效");
 
     String code;
     String message;

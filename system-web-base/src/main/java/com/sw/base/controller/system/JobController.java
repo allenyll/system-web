@@ -29,8 +29,8 @@ public class JobController extends BaseController<JobServiceImpl,Job> {
 
     @Override
     @ResponseBody
-    @RequestMapping(value = "{id}",method = RequestMethod.PUT)
-    public DataResponse update(Job job) {
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public DataResponse update(@RequestBody Job job) {
         if(job == null){
             return DataResponse.fail("参数为空，更新失败");
         }

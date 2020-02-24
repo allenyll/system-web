@@ -14,14 +14,14 @@
             </template>
           </el-table-column>
 #else
-          <el-table-column width="200px" align="center" label="${column.comments}">
+          <el-table-column align="center" label="${column.comments}">
             <template scope="scope">
               <span>{{scope.row.${column.attrNameLow}}}</span>
             </template>
           </el-table-column>
 #end
 #end
-      <el-table-column fixed="right" align="center" label="操作" width="150px">
+      <el-table-column fixed="right" align="center" label="操作">
         <template scope="scope">
           <el-button v-if="${secondModuleName}Manager_btn_edit" size="small" type="success" @click="handleUpdate(scope.row)">编辑
           </el-button>
@@ -100,16 +100,16 @@
         show: false
       }
     },
+    computed: {
+      ...mapGetters([
+          'elements'
+      ])
+    },
     created() {
       this.getList();
       this.${secondModuleName}Manager_btn_edit = this.elements['${moduleName}:${secondModuleName}:edit'];
       this.${secondModuleName}Manager_btn_del = this.elements['${moduleName}:${secondModuleName}:delete'];
       this.${secondModuleName}Manager_btn_add = this.elements['${moduleName}:${secondModuleName}:add'];
-    },
-    computed: {
-      ...mapGetters([
-        'elements'
-      ])
     },
     methods: {
       getList() {

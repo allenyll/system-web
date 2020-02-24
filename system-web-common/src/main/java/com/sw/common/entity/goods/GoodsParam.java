@@ -16,6 +16,8 @@ import java.util.Map;
 @ToString
 public class GoodsParam extends Goods {
 
+    private Brand brand;
+
     private String parentCategoryId;
 
     private String parentSpecCategoryId;

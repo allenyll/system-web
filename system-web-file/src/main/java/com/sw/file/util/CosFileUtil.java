@@ -23,10 +23,7 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -91,7 +88,7 @@ public class CosFileUtil {
                 String substring = key.substring(key.lastIndexOf("."));
                 Random random = new Random();
                 // 指定要上传到 COS 上的路径
-                key = "/images/"+random.nextInt(10000) + System.currentTimeMillis() + substring;
+                key = "/images/" + getTime() + "/" + random.nextInt(10000) + System.currentTimeMillis() + substring;
                 PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
                 // 本地文件上传
                 Upload upload = transferManager.upload(putObjectRequest);
@@ -119,13 +116,14 @@ public class CosFileUtil {
      */
     public static Map<String, Object> uploadFile(File localFile) {
         Map<String, Object> result = new HashMap<>();
+
         // 3 生成 cos 客户端。
         cosClient = new COSClient(cred, clientConfig);
         Random random = new Random();
         String key = localFile.getName();
         String substring = key.substring(key.lastIndexOf("."));
         // 指定要上传到 COS 上的路径
-        key = "/images/"+random.nextInt(10000) + System.currentTimeMillis() + substring;
+        key = "/images/" + getTime() + "/" + random.nextInt(10000) + System.currentTimeMillis() + substring;
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
         PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
         log.debug("上传结束时间: {}", sdf.format(new Date()), " + 上传成功");
@@ -133,6 +131,15 @@ public class CosFileUtil {
         result.put("fileName", key);
         result.put("url", url);
         return result;
+    }
+
+    public static String getTime() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month=cal.get(Calendar.MONTH);
+        int day=cal.get(Calendar.DATE);
+        String time = year + "" + month + "" + day;
+        return time;
     }
 
     /**

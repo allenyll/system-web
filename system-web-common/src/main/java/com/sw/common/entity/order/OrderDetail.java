@@ -36,7 +36,7 @@ public class OrderDetail extends Entity<OrderDetail>  {
 
 	// 商品id
     private String fkGoodsId;
-    
+
 	// 分类ID
 	private String fkCategoryId;
 
@@ -69,6 +69,8 @@ public class OrderDetail extends Entity<OrderDetail>  {
 
 	// 商品属性
     private String specValue;
+
+    private String attributes;
 
 	// 商品重量
     private BigDecimal goodsWeight;

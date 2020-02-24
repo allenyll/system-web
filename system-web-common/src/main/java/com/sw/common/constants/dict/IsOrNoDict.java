@@ -4,8 +4,8 @@ import com.sw.common.util.StringUtil;
 
 public enum IsOrNoDict {
 
-    NO("SW1001", "否"),
-    YES("SW1002", "是");
+    YES("SW1001", "是"),
+    NO("SW1002", "否");
 
     String code;
     String message;

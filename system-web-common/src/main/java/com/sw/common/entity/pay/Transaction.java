@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 /**
  * 交易表
- * 
+ *
  * @author allenyll
  * @email 806141743@qq.com
  * @date 2019-04-04 16:37:41
@@ -33,6 +33,8 @@ public class Transaction extends Entity<Transaction>  {
 
 	// 交易人
     private String fkCustomerId;
+
+    private String fkOrderId;
 
 	// 交易金额
     private BigDecimal amount;

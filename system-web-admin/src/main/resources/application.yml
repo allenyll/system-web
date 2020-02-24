@@ -7,8 +7,8 @@ server:
   port: 8080
   #ssl:
     #key-store: classpath:www.allenyll.com.jks
-    #key-store-password:
-    #keyStoreType: 
+    #key-store-password: 58024myself
+    #keyStoreType: JKS
 ###################  数据源配置  ###################
 db:
   profiles: dev
@@ -76,7 +76,7 @@ spring:
       #一个请求文件的最大尺寸
       max-request-size: 50mb
       #设置一个文件上传的临时文件目录
-      location: /Users/yuleilei/allenyll/my_prj/tempPhoto
+      location: ${user.dir}/tempPhoto
 
 #################### fdfs配置 ###################
 fdfs:
@@ -84,16 +84,16 @@ fdfs:
   connect-timeout: 600
   so-timeout: 1500
   #tracker地址
-  trackerList:
+  trackerList: 132.232.216.185:22122
   #通过nginx 访问地址
-  #
+  #fdfs.webServerUrl=http://132.232.216.185:9999/
   #缩略图配置
   thumb-image:
     height: 150
     width: 150
   #spring.jmx.enabled=false
   #通过nginx 访问地址
-  resHost:
+  resHost: 132.232.216.185
   storagePort: 443
   #获取连接池最大数量
   pool:
@@ -102,9 +102,9 @@ fdfs:
 cos:
   bucketName: system-web-1257935390
   region: ap-chengdu
-  appId:
-  SecretId:
-  SecretKey:
+  appId: 1257935390
+  SecretId: AKIDWzTL3UwzAAl95d4t2ZGnMMIqV8gFjew8
+  SecretKey: G39JDHYk4tJdDrLpYVO7mQaAau92NWg1
   cosUrl: https://system-web-1257935390.cos.ap-chengdu.myqcloud.com
 
 #################### JWT配置  ###################
@@ -131,14 +131,14 @@ jwt:
 auth:
   wechat:
     sessionHost: https://api.weixin.qq.com/sns/jscode2session
-    appId:
-    appSecret:
+    appId: wx95a6a02397595ace
+    appSecret: 52c970fbbf76dd8a5ea4b942fca5f6b3
     grantType: authorization_code
     systemWebUrl: http://localhost:8080/system-web/
     username: yll
     password: 123
-    mchId:
-    key:
+    mchId:  1529366201
+    key: e970d69349bd4b50a033386534860eb3
     orderUrl: https://api.mch.weixin.qq.com/pay/unifiedorder
     signType: MD5
     tradeType: JSAPI

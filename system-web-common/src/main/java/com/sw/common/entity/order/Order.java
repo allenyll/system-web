@@ -1,5 +1,8 @@
 package com.sw.common.entity.order;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.sw.common.entity.customer.Customer;
+import com.sw.common.entity.customer.CustomerAddress;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -8,6 +11,7 @@ import com.sw.common.entity.Entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -76,6 +80,12 @@ public class Order extends Entity<Order>  {
 	// 订单创建时间
     private String orderTime;
 
+    // 快递公司
+    private String deliveryCompany;
+
+    // 快递单号
+    private String deliveryNo;
+
 	// 发货时间
     private String deliveryTime;
 
@@ -136,11 +146,51 @@ public class Order extends Entity<Order>  {
 	// 收票人邮箱
     private String billReceiverEmail;
 
+    // 收货人
+    private String receiverName;
+
+    // 收货人电话
+    private String receiverPhone;
+
+    // 邮编
+    private String receiverPostCode;
+
+    // 收货人省份
+    private String receiverProvince;
+
+    // 收货人城市
+    private String receiverCity;
+
+    // 收货人区域
+    private String receiverRegion;
+
+    // 收货人详细地址
+    private String receiverDetailAddress;
+
 	// 是否积分产品
     private String isIntegral;
 
 	// 订单备注
     private String orderRemark;
+
+    // 后台备注
+    private String note;
+
+    @TableField(exist = false)
+    private List<OrderDetail> orderDetails;
+
+    @TableField(exist = false)
+    private List<OrderOperateLog> orderOperateLogs;
+
+	@TableField(exist = false)
+    private String statusStr;
+
+    @TableField(exist = false)
+    private CustomerAddress customerAddress;
+
+
+    @TableField(exist = false)
+    private Customer customer;
 
 	@Override
     protected Serializable pkVal() {

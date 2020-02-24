@@ -20,6 +20,7 @@
         <result property="fkSkuId" column="fk_sku_id"/>
         <result property="skuCode" column="sku_code"/>
         <result property="specValue" column="spec_value"/>
+        <result property="attributes" column="attributes"/>
         <result property="goodsWeight" column="goods_weight"/>
         <result property="linePrice" column="line_price"/>
         <result property="promotionName" column="promotion_name"/>
@@ -53,6 +54,7 @@
         fk_sku_id
         sku_code
         spec_value
+        attributes
         goods_weight
         line_price
         promotion_name
