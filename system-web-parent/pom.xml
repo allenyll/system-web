@@ -52,7 +52,7 @@
         <flowable.version>6.2.0</flowable.version>
         <slf4j.version>1.7.25</slf4j.version>
         <json.lib.version>2.4</json.lib.version>
-        <xstream.version>1.4.8</xstream.version>
+        <xstream.version>1.4.19</xstream.version>
         <xom.version>1.2.5</xom.version>
         <dom4j.version>1.6.1</dom4j.version>
         <nekohtml.version>1.9.22</nekohtml.version>
