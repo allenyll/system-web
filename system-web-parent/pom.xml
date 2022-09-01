@@ -60,7 +60,7 @@
         <thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
         <jedis.version>2.9.0</jedis.version>
         <lombok.version>1.16.22</lombok.version>
-        <jsoup.version>1.9.2</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <tkmapper.version>1.1.2</tkmapper.version>
         <quartz.version>2.3.0</quartz.version>
         <okhttp3.version>3.14.0</okhttp3.version>
